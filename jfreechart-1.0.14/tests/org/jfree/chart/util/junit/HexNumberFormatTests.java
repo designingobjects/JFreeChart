@@ -40,8 +40,6 @@
 
 package org.jfree.chart.util.junit;
 
-import java.awt.geom.Line2D;
-import java.awt.geom.Rectangle2D;
 import java.text.FieldPosition;
 import java.text.NumberFormat.Field;
 
@@ -49,8 +47,6 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
 import org.jfree.chart.util.HexNumberFormat;
 import org.jfree.chart.util.LineUtilities;
 
@@ -100,7 +96,7 @@ public class HexNumberFormatTests extends TestCase {
 		String actual = hexFormat.format(314159, sb, ps).toString();
 		assertEquals(expected, actual);
 	}
-	
+
 	public void testFormat_lengthSpecifiedShorter() {
 		hexFormat.setNumberOfDigits(HexNumberFormat.BYTE);
 		String expected = "0x4CB2F";
