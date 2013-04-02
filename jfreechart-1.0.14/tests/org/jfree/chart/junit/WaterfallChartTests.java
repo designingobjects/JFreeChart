@@ -51,6 +51,8 @@ import junit.framework.TestSuite;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.labels.CategoryToolTipGenerator;
+import org.jfree.chart.labels.ItemLabelAnchor;
+import org.jfree.chart.labels.ItemLabelPosition;
 import org.jfree.chart.labels.StandardCategoryToolTipGenerator;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
@@ -65,114 +67,148 @@ import org.jfree.data.general.DatasetUtilities;
  */
 public class WaterfallChartTests extends TestCase {
 
-    /** A chart. */
-    private JFreeChart chart;
+	/** A chart. */
+	private JFreeChart chart;
 
-    /**
-     * Returns the tests as a test suite.
-     *
-     * @return The test suite.
-     */
-    public static Test suite() {
-        return new TestSuite(WaterfallChartTests.class);
-    }
+	/**
+	 * Returns the tests as a test suite.
+	 * 
+	 * @return The test suite.
+	 */
+	public static Test suite() {
+		return new TestSuite(WaterfallChartTests.class);
+	}
 
-    /**
-     * Constructs a new set of tests.
-     *
-     * @param name  the name of the tests.
-     */
-    public WaterfallChartTests(String name) {
-        super(name);
-    }
+	/**
+	 * Constructs a new set of tests.
+	 * 
+	 * @param name
+	 *            the name of the tests.
+	 */
+	public WaterfallChartTests(String name) {
+		super(name);
+	}
 
-    /**
-     * Common test setup.
-     */
-    protected void setUp() {
-        this.chart = createWaterfallChart();
-    }
+	/**
+	 * Common test setup.
+	 */
+	protected void setUp() {
+		this.chart = createWaterfallChart();
+	}
 
-    /**
-     * Draws the chart with a null info object to make sure that no exceptions
-     * are thrown (a problem that was occurring at one point).
-     */
-    public void testDrawWithNullInfo() {
+	/**
+	 * Draws the chart with a null info object to make sure that no exceptions
+	 * are thrown (a problem that was occurring at one point).
+	 */
+	public void testDrawWithNullInfo() {
 
-        boolean success = false;
+		boolean success = false;
 
-        try {
-            BufferedImage image = new BufferedImage(200 , 100,
-                    BufferedImage.TYPE_INT_RGB);
-            Graphics2D g2 = image.createGraphics();
-            this.chart.draw(g2, new Rectangle2D.Double(0, 0, 200, 100), null,
-                    null);
-            g2.dispose();
-            success = true;
-        }
-        catch (Exception e) {
-            success = false;
-        }
+		try {
+			BufferedImage image = new BufferedImage(200, 100,
+					BufferedImage.TYPE_INT_RGB);
+			Graphics2D g2 = image.createGraphics();
+			this.chart.draw(g2, new Rectangle2D.Double(0, 0, 200, 100), null,
+					null);
+			g2.dispose();
+			success = true;
+		} catch (Exception e) {
+			success = false;
+		}
 
-        assertTrue(success);
+		assertTrue(success);
 
-    }
+	}
 
-    /**
-     * Check that setting a tool tip generator for a series does override the
-     * default generator.
-     */
-    public void testSetSeriesToolTipGenerator() {
-        CategoryPlot plot = (CategoryPlot) this.chart.getPlot();
-        CategoryItemRenderer renderer = plot.getRenderer();
-        StandardCategoryToolTipGenerator tt
-                = new StandardCategoryToolTipGenerator();
-        renderer.setSeriesToolTipGenerator(0, tt);
-        CategoryToolTipGenerator tt2 = renderer.getToolTipGenerator(0, 0);
-        assertTrue(tt2 == tt);
-    }
+	/**
+	 * Check that setting a tool tip generator for a series does override the
+	 * default generator.
+	 */
+	public void testSetSeriesToolTipGenerator() {
+		CategoryPlot plot = (CategoryPlot) this.chart.getPlot();
+		CategoryItemRenderer renderer = plot.getRenderer();
+		StandardCategoryToolTipGenerator tt = new StandardCategoryToolTipGenerator();
+		renderer.setSeriesToolTipGenerator(0, tt);
+		CategoryToolTipGenerator tt2 = renderer.getToolTipGenerator(0, 0);
+		assertTrue(tt2 == tt);
+	}
 
-    /**
-     * Check that setting a URL generator for a series does override the
-     * default generator.
-     */
-    public void testSetSeriesURLGenerator() {
-        CategoryPlot plot = (CategoryPlot) this.chart.getPlot();
-        CategoryItemRenderer renderer = plot.getRenderer();
-        StandardCategoryURLGenerator url1
-                = new StandardCategoryURLGenerator();
-        renderer.setSeriesItemURLGenerator(0, url1);
-        CategoryURLGenerator url2 = renderer.getItemURLGenerator(0, 0);
-        assertTrue(url2 == url1);
-    }
+	/**
+	 * Check that setting a URL generator for a series does override the default
+	 * generator.
+	 */
+	public void testSetSeriesURLGenerator() {
+		CategoryPlot plot = (CategoryPlot) this.chart.getPlot();
+		CategoryItemRenderer renderer = plot.getRenderer();
+		StandardCategoryURLGenerator url1 = new StandardCategoryURLGenerator();
+		renderer.setSeriesItemURLGenerator(0, url1);
+		CategoryURLGenerator url2 = renderer.getItemURLGenerator(0, 0);
+		assertTrue(url2 == url1);
+	}
 
-    /**
-     * Create a bar chart with sample data in the range -3 to +3.
-     *
-     * @return The chart.
-     */
-    private static JFreeChart createWaterfallChart() {
+	public void testCreateWaterfallChart_NullOrientation() {
+		try {
+			ChartFactory.createWaterfallChart("Waterfall Chart", "Domain",
+					"Range", null, null, true, // include legend
+					true, true);
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
 
-        // create a dataset...
-        Number[][] data = new Integer[][]
-            {{new Integer(-3), new Integer(-2)},
-             {new Integer(-1), new Integer(1)},
-             {new Integer(2), new Integer(3)}};
+	public void testCreateWaterfallChart_VerticalMinimalOptions() {
+		JFreeChart wf = createWaterfallChart_VerticalMinimalOptions();
 
-        CategoryDataset dataset = DatasetUtilities.createCategoryDataset("S",
-                "C", data);
+		assertNull(wf.getLegend());
+		assertNull(((CategoryPlot) wf.getPlot()).getRenderer()
+				.getBaseToolTipGenerator());
+		assertNull(((CategoryPlot) wf.getPlot()).getRenderer()
+				.getBaseItemURLGenerator());
 
-        // create the chart...
-        return ChartFactory.createWaterfallChart(
-            "Waterfall Chart",
-            "Domain", "Range",
-            dataset,
-            PlotOrientation.HORIZONTAL,
-            true,     // include legend
-            true,
-            true
-        );
+		ItemLabelPosition ilp = ((CategoryPlot) wf.getPlot()).getRenderer()
+				.getBasePositiveItemLabelPosition();
+		assertTrue(ItemLabelAnchor.CENTER.equals(ilp.getItemLabelAnchor()));
+	}
 
-    }
+	/**
+	 * Create a bar chart with sample data in the range -3 to +3.
+	 * 
+	 * @return The chart.
+	 */
+	private static JFreeChart createWaterfallChart() {
+
+		// create a dataset...
+		Number[][] data = new Integer[][] {
+				{ new Integer(-3), new Integer(-2) },
+				{ new Integer(-1), new Integer(1) },
+				{ new Integer(2), new Integer(3) } };
+
+		CategoryDataset dataset = DatasetUtilities.createCategoryDataset("S",
+				"C", data);
+
+		// create the chart...
+		return ChartFactory.createWaterfallChart("Waterfall Chart", "Domain",
+				"Range", dataset, PlotOrientation.HORIZONTAL, true, // include
+																	// legend
+				true, true);
+	}
+
+	private static JFreeChart createWaterfallChart_VerticalMinimalOptions() {
+
+		// create a dataset...
+		Number[][] data = new Integer[][] {
+				{ new Integer(-3), new Integer(-2) },
+				{ new Integer(-1), new Integer(1) },
+				{ new Integer(2), new Integer(3) } };
+
+		CategoryDataset dataset = DatasetUtilities.createCategoryDataset("S",
+				"C", data);
+
+		// create the chart...
+		return ChartFactory
+				.createWaterfallChart("Bar Chart 3D", "Domain", "Range",
+						dataset, PlotOrientation.VERTICAL, false, false, false);
+
+	}
 
 }

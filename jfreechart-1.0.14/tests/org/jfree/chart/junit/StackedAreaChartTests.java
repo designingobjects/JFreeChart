@@ -69,159 +69,195 @@ import org.jfree.data.general.DatasetUtilities;
  */
 public class StackedAreaChartTests extends TestCase {
 
-    /** A chart. */
-    private JFreeChart chart;
+	/** A chart. */
+	private JFreeChart chart;
 
-    /**
-     * Returns the tests as a test suite.
-     *
-     * @return The test suite.
-     */
-    public static Test suite() {
-        return new TestSuite(StackedAreaChartTests.class);
-    }
+	/**
+	 * Returns the tests as a test suite.
+	 * 
+	 * @return The test suite.
+	 */
+	public static Test suite() {
+		return new TestSuite(StackedAreaChartTests.class);
+	}
 
-    /**
-     * Constructs a new set of tests.
-     *
-     * @param name  the name of the tests.
-     */
-    public StackedAreaChartTests(String name) {
-        super(name);
-    }
+	/**
+	 * Constructs a new set of tests.
+	 * 
+	 * @param name
+	 *            the name of the tests.
+	 */
+	public StackedAreaChartTests(String name) {
+		super(name);
+	}
 
-    /**
-     * Common test setup.
-     */
-    protected void setUp() {
-        this.chart = createChart();
-    }
+	/**
+	 * Common test setup.
+	 */
+	protected void setUp() {
+		this.chart = createChart();
+	}
 
-    /**
-     * Draws the chart with a null info object to make sure that no exceptions
-     * are thrown (a problem that was occurring at one point).
-     */
-    public void testDrawWithNullInfo() {
+	/**
+	 * Draws the chart with a null info object to make sure that no exceptions
+	 * are thrown (a problem that was occurring at one point).
+	 */
+	public void testDrawWithNullInfo() {
 
-        boolean success = false;
-        try {
-            BufferedImage image = new BufferedImage(200 , 100,
-                    BufferedImage.TYPE_INT_RGB);
-            Graphics2D g2 = image.createGraphics();
-            this.chart.draw(g2, new Rectangle2D.Double(0, 0, 200, 100), null,
-                    null);
-            g2.dispose();
-            success = true;
-        }
-        catch (Exception e) {
-          success = false;
-        }
-        assertTrue(success);
+		boolean success = false;
+		try {
+			BufferedImage image = new BufferedImage(200, 100,
+					BufferedImage.TYPE_INT_RGB);
+			Graphics2D g2 = image.createGraphics();
+			this.chart.draw(g2, new Rectangle2D.Double(0, 0, 200, 100), null,
+					null);
+			g2.dispose();
+			success = true;
+		} catch (Exception e) {
+			success = false;
+		}
+		assertTrue(success);
 
-    }
+	}
 
-    /**
-     * Replaces the dataset and checks that it has changed as expected.
-     */
-    public void testReplaceDataset() {
+	/**
+	 * Replaces the dataset and checks that it has changed as expected.
+	 */
+	public void testReplaceDataset() {
 
-        // create a dataset...
-        Number[][] data = new Integer[][]
-            {{new Integer(-30), new Integer(-20)},
-             {new Integer(-10), new Integer(10)},
-             {new Integer(20), new Integer(30)}};
+		// create a dataset...
+		Number[][] data = new Integer[][] {
+				{ new Integer(-30), new Integer(-20) },
+				{ new Integer(-10), new Integer(10) },
+				{ new Integer(20), new Integer(30) } };
 
-        CategoryDataset newData = DatasetUtilities.createCategoryDataset("S",
-                "C", data);
+		CategoryDataset newData = DatasetUtilities.createCategoryDataset("S",
+				"C", data);
 
-        LocalListener l = new LocalListener();
-        this.chart.addChangeListener(l);
-        CategoryPlot plot = (CategoryPlot) this.chart.getPlot();
-        plot.setDataset(newData);
-        assertEquals(true, l.flag);
-        ValueAxis axis = plot.getRangeAxis();
-        Range range = axis.getRange();
-        assertTrue("Expecting the lower bound of the range to be around -30: "
-                    + range.getLowerBound(), range.getLowerBound() <= -30);
-        assertTrue("Expecting the upper bound of the range to be around 30: "
-                   + range.getUpperBound(), range.getUpperBound() >= 30);
+		LocalListener l = new LocalListener();
+		this.chart.addChangeListener(l);
+		CategoryPlot plot = (CategoryPlot) this.chart.getPlot();
+		plot.setDataset(newData);
+		assertEquals(true, l.flag);
+		ValueAxis axis = plot.getRangeAxis();
+		Range range = axis.getRange();
+		assertTrue("Expecting the lower bound of the range to be around -30: "
+				+ range.getLowerBound(), range.getLowerBound() <= -30);
+		assertTrue("Expecting the upper bound of the range to be around 30: "
+				+ range.getUpperBound(), range.getUpperBound() >= 30);
 
-    }
+	}
 
-    /**
-     * Check that setting a tool tip generator for a series does override the
-     * default generator.
-     */
-    public void testSetSeriesToolTipGenerator() {
-        CategoryPlot plot = (CategoryPlot) this.chart.getPlot();
-        CategoryItemRenderer renderer = plot.getRenderer();
-        StandardCategoryToolTipGenerator tt
-            = new StandardCategoryToolTipGenerator();
-        renderer.setSeriesToolTipGenerator(0, tt);
-        CategoryToolTipGenerator tt2 = renderer.getToolTipGenerator(0, 0);
-        assertTrue(tt2 == tt);
-    }
+	/**
+	 * Check that setting a tool tip generator for a series does override the
+	 * default generator.
+	 */
+	public void testSetSeriesToolTipGenerator() {
+		CategoryPlot plot = (CategoryPlot) this.chart.getPlot();
+		CategoryItemRenderer renderer = plot.getRenderer();
+		StandardCategoryToolTipGenerator tt = new StandardCategoryToolTipGenerator();
+		renderer.setSeriesToolTipGenerator(0, tt);
+		CategoryToolTipGenerator tt2 = renderer.getToolTipGenerator(0, 0);
+		assertTrue(tt2 == tt);
+	}
 
-    /**
-     * Check that setting a URL generator for a series does override the
-     * default generator.
-     */
-    public void testSetSeriesURLGenerator() {
-        CategoryPlot plot = (CategoryPlot) this.chart.getPlot();
-        CategoryItemRenderer renderer = plot.getRenderer();
-        StandardCategoryURLGenerator url1
-                = new StandardCategoryURLGenerator();
-        renderer.setSeriesItemURLGenerator(0, url1);
-        CategoryURLGenerator url2 = renderer.getItemURLGenerator(0, 0);
-        assertTrue(url2 == url1);
-    }
+	/**
+	 * Check that setting a URL generator for a series does override the default
+	 * generator.
+	 */
+	public void testSetSeriesURLGenerator() {
+		CategoryPlot plot = (CategoryPlot) this.chart.getPlot();
+		CategoryItemRenderer renderer = plot.getRenderer();
+		StandardCategoryURLGenerator url1 = new StandardCategoryURLGenerator();
+		renderer.setSeriesItemURLGenerator(0, url1);
+		CategoryURLGenerator url2 = renderer.getItemURLGenerator(0, 0);
+		assertTrue(url2 == url1);
+	}
 
-    /**
-     * Create a stacked bar chart with sample data in the range -3 to +3.
-     *
-     * @return The chart.
-     */
-    private static JFreeChart createChart() {
+	public void testCreateStackedAreaChart_NullOrientation() {
+		Number[][] data = new Integer[][] {
+				{ new Integer(-3), new Integer(-2) },
+				{ new Integer(-1), new Integer(1) },
+				{ new Integer(2), new Integer(3) } };
 
-        // create a dataset...
-        Number[][] data = new Integer[][]
-            {{new Integer(-3), new Integer(-2)},
-             {new Integer(-1), new Integer(1)},
-             {new Integer(2), new Integer(3)}};
+		CategoryDataset dataset = DatasetUtilities.createCategoryDataset("S",
+				"C", data);
 
-        CategoryDataset dataset = DatasetUtilities.createCategoryDataset("S",
-                "C", data);
+		try {
+			ChartFactory.createStackedAreaChart("Area Chart", "Domain",
+					"Range", dataset, null, false, false, false);
 
-        // create the chart...
-        return ChartFactory.createStackedAreaChart(
-            "Stacked Area Chart",  // chart title
-            "Domain", "Range",
-            dataset,      // data
-            PlotOrientation.HORIZONTAL,
-            true,         // include legend
-            true,
-            true
-        );
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
 
-    }
+	public void testCreateStackedAreaChart_MinimalOptions() {
+		JFreeChart area = createStackedAreaChart_MinimalOptions();
 
-    /**
-     * A chart change listener.
-     */
-    static class LocalListener implements ChartChangeListener {
+		assertNull(area.getLegend());
+		assertNull(((CategoryPlot) area.getPlot()).getRenderer()
+				.getBaseToolTipGenerator());
+		assertNull(((CategoryPlot) area.getPlot()).getRenderer()
+				.getBaseItemURLGenerator());
+	}
 
-        /** A flag. */
-        private boolean flag = false;
+	/**
+	 * Create a stacked bar chart with sample data in the range -3 to +3.
+	 * 
+	 * @return The chart.
+	 */
+	private static JFreeChart createChart() {
 
-        /**
-         * Event handler.
-         *
-         * @param event  the event.
-         */
-        public void chartChanged(ChartChangeEvent event) {
-            this.flag = true;
-        }
+		// create a dataset...
+		Number[][] data = new Integer[][] {
+				{ new Integer(-3), new Integer(-2) },
+				{ new Integer(-1), new Integer(1) },
+				{ new Integer(2), new Integer(3) } };
 
-    }
+		CategoryDataset dataset = DatasetUtilities.createCategoryDataset("S",
+				"C", data);
+
+		// create the chart...
+		return ChartFactory.createStackedAreaChart("Stacked Area Chart", // chart
+																			// title
+				"Domain", "Range", dataset, // data
+				PlotOrientation.HORIZONTAL, true, // include legend
+				true, true);
+
+	}
+
+	private static JFreeChart createStackedAreaChart_MinimalOptions() {
+		Number[][] data = new Integer[][] {
+				{ new Integer(-3), new Integer(-2) },
+				{ new Integer(-1), new Integer(1) },
+				{ new Integer(2), new Integer(3) } };
+		CategoryDataset dataset = DatasetUtilities.createCategoryDataset("S",
+				"C", data);
+		return ChartFactory.createStackedAreaChart("Area Chart", "Domain",
+				"Range", dataset, PlotOrientation.HORIZONTAL, false, false,
+				false);
+
+	}
+
+	/**
+	 * A chart change listener.
+	 */
+	static class LocalListener implements ChartChangeListener {
+
+		/** A flag. */
+		private boolean flag = false;
+
+		/**
+		 * Event handler.
+		 * 
+		 * @param event
+		 *            the event.
+		 */
+		public void chartChanged(ChartChangeEvent event) {
+			this.flag = true;
+		}
+
+	}
 
 }
