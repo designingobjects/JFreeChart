@@ -56,43 +56,55 @@ import junit.framework.TestSuite;
  */
 public class ChartPackageTests extends TestCase {
 
-    /**
-     * Returns a test suite to the JUnit test runner.
-     *
-     * @return The test suite.
-     */
-    public static Test suite() {
-        TestSuite suite = new TestSuite("org.jfree.chart");
-        suite.addTestSuite(AreaChartTests.class);
-        suite.addTestSuite(BarChartTests.class);
-        suite.addTestSuite(BarChart3DTests.class);
-        suite.addTestSuite(ChartPanelTests.class);
-        suite.addTestSuite(ChartRenderingInfoTests.class);
-        suite.addTestSuite(GanttChartTests.class);
-        suite.addTestSuite(HashUtilitiesTests.class);
-        suite.addTestSuite(JFreeChartTests.class);
-        suite.addTestSuite(LegendItemTests.class);
-        suite.addTestSuite(LegendItemCollectionTests.class);
-        suite.addTestSuite(LineChartTests.class);
-        suite.addTestSuite(LineChart3DTests.class);
-        suite.addTestSuite(MeterChartTests.class);
-        suite.addTestSuite(PaintMapTests.class);
-        suite.addTestSuite(PieChartTests.class);
-        suite.addTestSuite(PieChart3DTests.class);
-        suite.addTestSuite(ScatterPlotTests.class);
-        suite.addTestSuite(StackedAreaChartTests.class);
-        suite.addTestSuite(StackedBarChartTests.class);
-        suite.addTestSuite(StackedBarChart3DTests.class);
-        suite.addTestSuite(StandardChartThemeTests.class);
-        suite.addTestSuite(StrokeMapTests.class);
-        suite.addTestSuite(TimeSeriesChartTests.class);
-        suite.addTestSuite(WaterfallChartTests.class);
-        suite.addTestSuite(XYAreaChartTests.class);
-        suite.addTestSuite(XYBarChartTests.class);
-        suite.addTestSuite(XYLineChartTests.class);
-        suite.addTestSuite(XYStepAreaChartTests.class);
-        suite.addTestSuite(XYStepChartTests.class);
-        return suite;
-    }
+	/**
+	 * Returns a test suite to the JUnit test runner.
+	 * 
+	 * @return The test suite.
+	 */
+	public static Test suite() {
+		TestSuite suite = new TestSuite("org.jfree.chart");
+		suite.addTestSuite(AreaChartTests.class);
+		suite.addTestSuite(BarChartTests.class);
+		suite.addTestSuite(BarChart3DTests.class);
+		suite.addTestSuite(BoxAndWhiskerChartTests.class);
+		suite.addTestSuite(BubbleChartTests.class);
+		suite.addTestSuite(CandlestickChartTests.class);
+		suite.addTestSuite(ChartFactoryTests.class);
+		suite.addTestSuite(ChartPanelTests.class);
+		suite.addTestSuite(ChartRenderingInfoTests.class);
+		suite.addTestSuite(GanttChartTests.class);
+		suite.addTestSuite(HashUtilitiesTests.class);
+		suite.addTestSuite(HighLowChartTests.class);
+		suite.addTestSuite(HistogramChartTests.class);
+		suite.addTestSuite(JFreeChartTests.class);
+		suite.addTestSuite(LegendItemTests.class);
+		suite.addTestSuite(LegendItemCollectionTests.class);
+		suite.addTestSuite(LineChartTests.class);
+		suite.addTestSuite(LineChart3DTests.class);
+		suite.addTestSuite(MeterChartTests.class);
+		suite.addTestSuite(MouseWheelHandlerTests.class);
+		suite.addTestSuite(PaintMapTests.class);
+		suite.addTestSuite(PieChartTests.class);
+		suite.addTestSuite(PieChart3DTests.class);
+		suite.addTestSuite(PolarPlotTests.class);
+		suite.addTestSuite(ScatterPlotTests.class);
+		suite.addTestSuite(StackedAreaChartTests.class);
+		suite.addTestSuite(StackedBarChartTests.class);
+		suite.addTestSuite(StackedBarChart3DTests.class);
+		suite.addTestSuite(StackedXYAreaChartTests.class);
+		suite.addTestSuite(StandardChartThemeTests.class);
+		suite.addTestSuite(StrokeMapTests.class);
+		suite.addTestSuite(TestUtilities.class);
+		suite.addTestSuite(TimeSeriesChartTests.class);
+		suite.addTestSuite(WaferMapChartTests.class);
+		suite.addTestSuite(WaterfallChartTests.class);
+		suite.addTestSuite(WindPlotTests.class);
+		suite.addTestSuite(XYAreaChartTests.class);
+		suite.addTestSuite(XYBarChartTests.class);
+		suite.addTestSuite(XYLineChartTests.class);
+		suite.addTestSuite(XYStepAreaChartTests.class);
+		suite.addTestSuite(XYStepChartTests.class);
+		return suite;
+	}
 
 }

@@ -60,6 +60,7 @@ public class UtilPackageTests extends TestCase {
      */
     public static Test suite() {
         TestSuite suite = new TestSuite("org.jfree.chart.util");
+        suite.addTestSuite(HexNumberFormatTests.class);
         suite.addTestSuite(LineUtilitiesTests.class);
         suite.addTestSuite(LogFormatTests.class);
         suite.addTestSuite(RelativeDateFormatTests.class);
