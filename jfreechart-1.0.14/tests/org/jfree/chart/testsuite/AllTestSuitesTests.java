@@ -454,6 +454,7 @@ public class AllTestSuitesTests extends TestCase {
 		suite.addTestSuite(StandardEntityCollectionTests.class);
 		suite.addTestSuite(TickLabelEntityTests.class);
 		suite.addTestSuite(XYItemEntityTests.class);
+
 		// ImageMapPackageTests
 		suite.addTestSuite(DynamicDriveToolTipTagFragmentGeneratorTests.class);
 		suite.addTestSuite(ImageMapUtilitiesTests.class);
