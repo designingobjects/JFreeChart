@@ -64,6 +64,7 @@ import org.jfree.chart.block.junit.GridArrangementTests;
 import org.jfree.chart.block.junit.LabelBlockTests;
 import org.jfree.chart.block.junit.LineBorderTests;
 import org.jfree.chart.block.junit.RectangleConstraintTests;
+import org.jfree.chart.editor.DefaultChartEditorTests;
 import org.jfree.chart.entity.junit.CategoryItemEntityTests;
 import org.jfree.chart.entity.junit.CategoryLabelEntityTests;
 import org.jfree.chart.entity.junit.ContourEntityTests;
@@ -445,6 +446,9 @@ public class AllTestSuitesTests extends TestCase {
 		suite.addTestSuite(LabelBlockTests.class);
 		suite.addTestSuite(LineBorderTests.class);
 		suite.addTestSuite(RectangleConstraintTests.class);
+
+		// EditorPackageTests
+		suite.addTestSuite(DefaultChartEditorTests.class);
 
 		// EntityPackageTests
 		suite.addTestSuite(CategoryItemEntityTests.class);
