@@ -267,6 +267,7 @@ import org.jfree.chart.urls.junit.TimeSeriesURLGeneratorTests;
 import org.jfree.chart.util.junit.HexNumberFormatTests;
 import org.jfree.chart.util.junit.LineUtilitiesTests;
 import org.jfree.chart.util.junit.LogFormatTests;
+import org.jfree.chart.util.junit.ParamChecksTests;
 import org.jfree.chart.util.junit.RelativeDateFormatTests;
 import org.jfree.data.category.junit.CategoryToPieDatasetTests;
 import org.jfree.data.category.junit.DefaultCategoryDatasetTests;
@@ -677,6 +678,7 @@ public class AllTestSuitesTests extends TestCase {
 		suite.addTestSuite(HexNumberFormatTests.class);
 		suite.addTestSuite(LineUtilitiesTests.class);
 		suite.addTestSuite(LogFormatTests.class);
+		suite.addTestSuite(ParamChecksTests.class);
 		suite.addTestSuite(RelativeDateFormatTests.class);
 
 		// DataCategoryPackageTests

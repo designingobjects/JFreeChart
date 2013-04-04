@@ -24,19 +24,17 @@
  * [Oracle and Java are registered trademarks of Oracle and/or its affiliates. 
  * Other names may be trademarks of their respective owners.]
  *
- * ---------------------
- * UtilPackageTests.java
- * ---------------------
- * (C) Copyright 2006-2008, by Object Refinery Limited.
+ * -----------------------
+ * LineUtilitiesTests.java
+ * -----------------------
+ * (C) Copyright 2008, by Object Refinery Limited and Contributors.
  *
  * Original Author:  David Gilbert (for Object Refinery Limited);
  * Contributor(s):   -;
  *
- * Changes:
- * --------
- * 23-Nov-2006 : Version 1 (DG);
- * 08-Apr-2008 : Added LogFormatTests (DG);
- * 05-Nov-2008 : Added LineUtilitiesTests (DG);
+ * Changes
+ * -------
+ * 05-Nov-2008 : Version 1 (DG);
  *
  */
 
@@ -46,46 +44,49 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import org.jfree.chart.util.LineUtilities;
+import org.jfree.chart.util.ParamChecks;
+
 /**
- * A collection of tests for the org.jfree.chart.util package.
- * <P>
- * These tests can be run using JUnit (http://www.junit.org).
+ * Tests for the {@link LineUtilities} class.
  */
-public class UtilPackageTests extends TestCase {
+public class ParamChecksTests extends TestCase {
 
 	/**
-	 * Returns a test suite to the JUnit test runner.
+	 * Returns the tests as a test suite.
 	 * 
 	 * @return The test suite.
 	 */
 	public static Test suite() {
-		TestSuite suite = new TestSuite("org.jfree.chart.util");
-		suite.addTestSuite(HexNumberFormatTests.class);
-		suite.addTestSuite(LineUtilitiesTests.class);
-		suite.addTestSuite(LogFormatTests.class);
-		suite.addTestSuite(ParamChecksTests.class);
-		suite.addTestSuite(RelativeDateFormatTests.class);
-		return suite;
+		return new TestSuite(ParamChecksTests.class);
 	}
 
 	/**
-	 * Constructs the test suite.
+	 * Constructs a new set of tests.
 	 * 
 	 * @param name
-	 *            the suite name.
+	 *            the name of the tests.
 	 */
-	public UtilPackageTests(String name) {
+	public ParamChecksTests(String name) {
 		super(name);
 	}
 
-	/**
-	 * Runs the test suite using JUnit's text-based runner.
-	 * 
-	 * @param args
-	 *            ignored.
-	 */
-	public static void main(String[] args) {
-		junit.textui.TestRunner.run(suite());
+	protected void setUp() {
 	}
 
+	public void testNullNotPermitted() {
+		try {
+			ParamChecks.nullNotPermitted("NonNull String Object", "name");
+		} catch (IllegalArgumentException e) {
+			fail();
+		}
+	}
+
+	public void testNullNotPermitted_NullObject() {
+		try {
+			ParamChecks.nullNotPermitted(null, "name");
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
 }
