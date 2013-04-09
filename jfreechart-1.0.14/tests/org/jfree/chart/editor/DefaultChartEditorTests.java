@@ -85,9 +85,9 @@ public class DefaultChartEditorTests extends TestCase {
 
 		editor.updateChart(createBarChart2());
 		assertNotNull(editor.getTitleEditor());
-		assertEquals("Bar Chart 2 Title", editor.getTitleEditor()
+		assertEquals("Bar Chart Title", editor.getTitleEditor()
 				.getTitleText());
-		assertFalse(editor.getAntiAlias());
+		assertTrue(editor.getAntiAlias());
 
 	}
 
