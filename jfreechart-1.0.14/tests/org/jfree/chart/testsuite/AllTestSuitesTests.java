@@ -65,6 +65,7 @@ import org.jfree.chart.block.junit.LabelBlockTests;
 import org.jfree.chart.block.junit.LineBorderTests;
 import org.jfree.chart.block.junit.RectangleConstraintTests;
 import org.jfree.chart.editor.DefaultChartEditorTests;
+import org.jfree.chart.encoders.KeypointPNGEncoderAdapter;
 import org.jfree.chart.entity.junit.CategoryItemEntityTests;
 import org.jfree.chart.entity.junit.CategoryLabelEntityTests;
 import org.jfree.chart.entity.junit.ContourEntityTests;
@@ -449,6 +450,9 @@ public class AllTestSuitesTests extends TestCase {
 
 		// EditorPackageTests
 		suite.addTestSuite(DefaultChartEditorTests.class);
+
+		// EncodersPackageTests
+		suite.addTestSuite(KeypointPNGEncoderAdapter.class);
 
 		// EntityPackageTests
 		suite.addTestSuite(CategoryItemEntityTests.class);
