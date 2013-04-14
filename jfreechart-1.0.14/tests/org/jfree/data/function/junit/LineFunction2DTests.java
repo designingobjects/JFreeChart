@@ -96,10 +96,21 @@ public class LineFunction2DTests extends TestCase {
         LineFunction2D f1 = new LineFunction2D(1.0, 2.0);
         LineFunction2D f2 = new LineFunction2D(1.0, 2.0);
         assertTrue(f1.equals(f2));
+        
         f1 = new LineFunction2D(2.0, 3.0);
         assertFalse(f1.equals(f2));
+        
         f2 = new LineFunction2D(2.0, 3.0);
         assertTrue(f1.equals(f2));
+        
+        f2 = new LineFunction2D(2.0, 2.0);
+        assertFalse(f1.equals(f2));
+    }
+    
+    public void testEquals_DifferentDataClass() {
+        LineFunction2D f1 = new LineFunction2D(1.0, 2.0);
+        String f2 = "";
+        assertFalse(f1.equals(f2));
     }
 
     /**

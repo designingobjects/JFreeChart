@@ -94,7 +94,6 @@ public class ChartPackageTests extends TestCase {
 		suite.addTestSuite(StackedXYAreaChartTests.class);
 		suite.addTestSuite(StandardChartThemeTests.class);
 		suite.addTestSuite(StrokeMapTests.class);
-		suite.addTestSuite(TestUtilities.class);
 		suite.addTestSuite(TimeSeriesChartTests.class);
 		suite.addTestSuite(WaferMapChartTests.class);
 		suite.addTestSuite(WaterfallChartTests.class);
