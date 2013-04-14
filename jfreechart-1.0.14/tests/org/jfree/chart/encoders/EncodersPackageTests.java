@@ -10,7 +10,7 @@ public class EncodersPackageTests extends TestCase {
 		TestSuite suite = new TestSuite(EncodersPackageTests.class.getName());
 		// $JUnit-BEGIN$
 
-		suite.addTestSuite(KeypointPNGEncoderAdapter.class);
+		suite.addTestSuite(KeypointPNGEncoderAdapterTests.class);
 
 		// $JUnit-END$
 		return suite;
