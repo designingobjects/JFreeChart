@@ -38,7 +38,6 @@
  *
  */
 
-
 package org.jfree.chart.junit;
 
 import java.awt.BasicStroke;
@@ -60,6 +59,7 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import org.jfree.chart.ChartTheme;
 import org.jfree.chart.StandardChartTheme;
 import org.jfree.chart.plot.DefaultDrawingSupplier;
 import org.jfree.chart.plot.PieLabelLinkStyle;
@@ -72,257 +72,544 @@ import org.jfree.ui.RectangleInsets;
  */
 public class StandardChartThemeTests extends TestCase {
 
-    /**
-     * Returns the tests as a test suite.
-     *
-     * @return The test suite.
-     */
-    public static Test suite() {
-        return new TestSuite(StandardChartThemeTests.class);
-    }
+	/**
+	 * Returns the tests as a test suite.
+	 * 
+	 * @return The test suite.
+	 */
+	public static Test suite() {
+		return new TestSuite(StandardChartThemeTests.class);
+	}
 
-    /**
-     * Constructs a new set of tests.
-     *
-     * @param name  the name of the tests.
-     */
-    public StandardChartThemeTests(String name) {
-        super(name);
-    }
+	/**
+	 * Constructs a new set of tests.
+	 * 
+	 * @param name
+	 *            the name of the tests.
+	 */
+	public StandardChartThemeTests(String name) {
+		super(name);
+	}
 
-    /**
-     * Confirm that the equals method can distinguish all the required fields.
-     */
-    public void testEquals() {
+	/**
+	 * Confirm that the equals method can distinguish all the required fields.
+	 */
+	public void testEquals() {
 
-        StandardChartTheme t1 = new StandardChartTheme("Name");
-        StandardChartTheme t2 = new StandardChartTheme("Name");
-        assertTrue(t1.equals(t2));
+		StandardChartTheme t1 = new StandardChartTheme("Name");
+		assertTrue(t1.equals(t1));
+		assertFalse(t1.equals(null));
+		StandardChartTheme t2 = new StandardChartTheme("Name");
+		assertTrue(t1.equals(t2));
 
-        // name
-        t1 = new StandardChartTheme("t1");
-        assertFalse(t1.equals(t2));
-        t2 = new StandardChartTheme("t1");
-        assertTrue(t1.equals(t2));
+		// name
+		t1 = new StandardChartTheme("t1");
+		assertFalse(t1.equals(t2));
+		t2 = new StandardChartTheme("t1");
+		assertTrue(t1.equals(t2));
 
-        //extraLargeFont
-        t1.setExtraLargeFont(new Font("Dialog", Font.PLAIN, 21));
-        assertFalse(t1.equals(t2));
-        t2.setExtraLargeFont(new Font("Dialog", Font.PLAIN, 21));
-        assertTrue(t1.equals(t2));
+		// extraLargeFont
+		t1.setExtraLargeFont(new Font("Dialog", Font.PLAIN, 21));
+		assertFalse(t1.equals(t2));
+		t2.setExtraLargeFont(new Font("Dialog", Font.PLAIN, 21));
+		assertTrue(t1.equals(t2));
 
-        //largeFont
-        t1.setLargeFont(new Font("Dialog", Font.PLAIN, 19));
-        assertFalse(t1.equals(t2));
-        t2.setLargeFont(new Font("Dialog", Font.PLAIN, 19));
-        assertTrue(t1.equals(t2));
+		// largeFont
+		t1.setLargeFont(new Font("Dialog", Font.PLAIN, 19));
+		assertFalse(t1.equals(t2));
+		t2.setLargeFont(new Font("Dialog", Font.PLAIN, 19));
+		assertTrue(t1.equals(t2));
 
-        //regularFont;
-        t1.setRegularFont(new Font("Dialog", Font.PLAIN, 17));
-        assertFalse(t1.equals(t2));
-        t2.setRegularFont(new Font("Dialog", Font.PLAIN, 17));
-        assertTrue(t1.equals(t2));
+		// regularFont;
+		t1.setRegularFont(new Font("Dialog", Font.PLAIN, 17));
+		assertFalse(t1.equals(t2));
+		t2.setRegularFont(new Font("Dialog", Font.PLAIN, 17));
+		assertTrue(t1.equals(t2));
 
-        //titlePaint;
-        t1.setTitlePaint(new GradientPaint(0f, 1f, Color.red, 2f, 3f, Color.blue));
-        assertFalse(t1.equals(t2));
-        t2.setTitlePaint(new GradientPaint(0f, 1f, Color.red, 2f, 3f, Color.blue));
-        assertTrue(t1.equals(t2));
+		// titlePaint;
+		t1.setTitlePaint(new GradientPaint(0f, 1f, Color.red, 2f, 3f,
+				Color.blue));
+		assertFalse(t1.equals(t2));
+		t2.setTitlePaint(new GradientPaint(0f, 1f, Color.red, 2f, 3f,
+				Color.blue));
+		assertTrue(t1.equals(t2));
 
-        //subtitlePaint;
-        t1.setSubtitlePaint(new GradientPaint(1f, 2f, Color.red, 3f, 4f, Color.blue));
-        assertFalse(t1.equals(t2));
-        t2.setSubtitlePaint(new GradientPaint(1f, 2f, Color.red, 3f, 4f, Color.blue));
-        assertTrue(t1.equals(t2));
+		// subtitlePaint;
+		t1.setSubtitlePaint(new GradientPaint(1f, 2f, Color.red, 3f, 4f,
+				Color.blue));
+		assertFalse(t1.equals(t2));
+		t2.setSubtitlePaint(new GradientPaint(1f, 2f, Color.red, 3f, 4f,
+				Color.blue));
+		assertTrue(t1.equals(t2));
 
-        //chartBackgroundPaint;
-        t1.setChartBackgroundPaint(new GradientPaint(2f, 3f, Color.blue, 4f, 5f, Color.red));
-        assertFalse(t1.equals(t2));
-        t2.setChartBackgroundPaint(new GradientPaint(2f, 3f, Color.blue, 4f, 5f, Color.red));
-        assertTrue(t1.equals(t2));
+		// chartBackgroundPaint;
+		t1.setChartBackgroundPaint(new GradientPaint(2f, 3f, Color.blue, 4f,
+				5f, Color.red));
+		assertFalse(t1.equals(t2));
+		t2.setChartBackgroundPaint(new GradientPaint(2f, 3f, Color.blue, 4f,
+				5f, Color.red));
+		assertTrue(t1.equals(t2));
 
-        //legendBackgroundPaint;
-        t1.setLegendBackgroundPaint(new GradientPaint(3f, 4f, Color.gray, 1f, 2f, Color.red));
-        assertFalse(t1.equals(t2));
-        t2.setLegendBackgroundPaint(new GradientPaint(3f, 4f, Color.gray, 1f, 2f, Color.red));
-        assertTrue(t1.equals(t2));
+		// legendBackgroundPaint;
+		t1.setLegendBackgroundPaint(new GradientPaint(3f, 4f, Color.gray, 1f,
+				2f, Color.red));
+		assertFalse(t1.equals(t2));
+		t2.setLegendBackgroundPaint(new GradientPaint(3f, 4f, Color.gray, 1f,
+				2f, Color.red));
+		assertTrue(t1.equals(t2));
 
-        //legendItemPaint;
-        t1.setLegendItemPaint(new GradientPaint(9f, 8f, Color.red, 7f, 6f, Color.blue));
-        assertFalse(t1.equals(t2));
-        t2.setLegendItemPaint(new GradientPaint(9f, 8f, Color.red, 7f, 6f, Color.blue));
-        assertTrue(t1.equals(t2));
+		// legendItemPaint;
+		t1.setLegendItemPaint(new GradientPaint(9f, 8f, Color.red, 7f, 6f,
+				Color.blue));
+		assertFalse(t1.equals(t2));
+		t2.setLegendItemPaint(new GradientPaint(9f, 8f, Color.red, 7f, 6f,
+				Color.blue));
+		assertTrue(t1.equals(t2));
 
-        //drawingSupplier;
-        t1.setDrawingSupplier(new DefaultDrawingSupplier(
-                new Paint[] {Color.red},
-                new Paint[] {Color.blue},
-                new Stroke[] {new BasicStroke(1.0f)},
-                new Stroke[] {new BasicStroke(1.0f)},
-                new Shape[] {new Rectangle2D.Double(1.0, 2.0, 3.0, 4.0)}));
-        assertFalse(t1.equals(t2));
-        t2.setDrawingSupplier(new DefaultDrawingSupplier(
-                new Paint[] {Color.red},
-                new Paint[] {Color.blue},
-                new Stroke[] {new BasicStroke(1.0f)},
-                new Stroke[] {new BasicStroke(1.0f)},
-                new Shape[] {new Rectangle2D.Double(1.0, 2.0, 3.0, 4.0)}));
-        assertTrue(t1.equals(t2));
+		// drawingSupplier;
+		t1.setDrawingSupplier(new DefaultDrawingSupplier(
+				new Paint[] { Color.red }, new Paint[] { Color.blue },
+				new Stroke[] { new BasicStroke(1.0f) },
+				new Stroke[] { new BasicStroke(1.0f) },
+				new Shape[] { new Rectangle2D.Double(1.0, 2.0, 3.0, 4.0) }));
+		assertFalse(t1.equals(t2));
+		t2.setDrawingSupplier(new DefaultDrawingSupplier(
+				new Paint[] { Color.red }, new Paint[] { Color.blue },
+				new Stroke[] { new BasicStroke(1.0f) },
+				new Stroke[] { new BasicStroke(1.0f) },
+				new Shape[] { new Rectangle2D.Double(1.0, 2.0, 3.0, 4.0) }));
+		assertTrue(t1.equals(t2));
 
-        //plotBackgroundPaint;
-        t1.setPlotBackgroundPaint(new GradientPaint(4f, 3f, Color.red, 6f, 7f, Color.blue));
-        assertFalse(t1.equals(t2));
-        t2.setPlotBackgroundPaint(new GradientPaint(4f, 3f, Color.red, 6f, 7f, Color.blue));
-        assertTrue(t1.equals(t2));
+		// plotBackgroundPaint;
+		t1.setPlotBackgroundPaint(new GradientPaint(4f, 3f, Color.red, 6f, 7f,
+				Color.blue));
+		assertFalse(t1.equals(t2));
+		t2.setPlotBackgroundPaint(new GradientPaint(4f, 3f, Color.red, 6f, 7f,
+				Color.blue));
+		assertTrue(t1.equals(t2));
 
-        //plotOutlinePaint;
-        t1.setPlotOutlinePaint(new GradientPaint(5f, 2f, Color.blue, 6f, 7f, Color.red));
-        assertFalse(t1.equals(t2));
-        t2.setPlotOutlinePaint(new GradientPaint(5f, 2f, Color.blue, 6f, 7f, Color.red));
-        assertTrue(t1.equals(t2));
+		// plotOutlinePaint;
+		t1.setPlotOutlinePaint(new GradientPaint(5f, 2f, Color.blue, 6f, 7f,
+				Color.red));
+		assertFalse(t1.equals(t2));
+		t2.setPlotOutlinePaint(new GradientPaint(5f, 2f, Color.blue, 6f, 7f,
+				Color.red));
+		assertTrue(t1.equals(t2));
 
-        //labelLinkStyle;
-        t1.setLabelLinkStyle(PieLabelLinkStyle.STANDARD);
-        assertFalse(t1.equals(t2));
-        t2.setLabelLinkStyle(PieLabelLinkStyle.STANDARD);
-        assertTrue(t1.equals(t2));
+		// labelLinkStyle;
+		t1.setLabelLinkStyle(PieLabelLinkStyle.STANDARD);
+		assertFalse(t1.equals(t2));
+		t2.setLabelLinkStyle(PieLabelLinkStyle.STANDARD);
+		assertTrue(t1.equals(t2));
 
-        //labelLinkPaint;
-        t1.setLabelLinkPaint(new GradientPaint(4f, 3f, Color.red, 2f, 9f, Color.blue));
-        assertFalse(t1.equals(t2));
-        t2.setLabelLinkPaint(new GradientPaint(4f, 3f, Color.red, 2f, 9f, Color.blue));
-        assertTrue(t1.equals(t2));
+		// labelLinkPaint;
+		t1.setLabelLinkPaint(new GradientPaint(4f, 3f, Color.red, 2f, 9f,
+				Color.blue));
+		assertFalse(t1.equals(t2));
+		t2.setLabelLinkPaint(new GradientPaint(4f, 3f, Color.red, 2f, 9f,
+				Color.blue));
+		assertTrue(t1.equals(t2));
 
-        //domainGridlinePaint;
-        t1.setDomainGridlinePaint(Color.blue);
-        assertFalse(t1.equals(t2));
-        t2.setDomainGridlinePaint(Color.blue);
-        assertTrue(t1.equals(t2));
+		// domainGridlinePaint;
+		t1.setDomainGridlinePaint(Color.blue);
+		assertFalse(t1.equals(t2));
+		t2.setDomainGridlinePaint(Color.blue);
+		assertTrue(t1.equals(t2));
 
-        //rangeGridlinePaint;
-        t1.setRangeGridlinePaint(Color.red);
-        assertFalse(t1.equals(t2));
-        t2.setRangeGridlinePaint(Color.red);
-        assertTrue(t1.equals(t2));
+		// rangeGridlinePaint;
+		t1.setRangeGridlinePaint(Color.red);
+		assertFalse(t1.equals(t2));
+		t2.setRangeGridlinePaint(Color.red);
+		assertTrue(t1.equals(t2));
 
-        //axisOffset;
-        t1.setAxisOffset(new RectangleInsets(1, 2, 3, 4));
-        assertFalse(t1.equals(t2));
-        t2.setAxisOffset(new RectangleInsets(1, 2, 3, 4));
-        assertTrue(t1.equals(t2));
+		// axisOffset;
+		t1.setAxisOffset(new RectangleInsets(1, 2, 3, 4));
+		assertFalse(t1.equals(t2));
+		t2.setAxisOffset(new RectangleInsets(1, 2, 3, 4));
+		assertTrue(t1.equals(t2));
 
-        //axisLabelPaint;
-        t1.setAxisLabelPaint(new GradientPaint(8f, 4f, Color.gray, 2f, 9f, Color.blue));
-        assertFalse(t1.equals(t2));
-        t2.setAxisLabelPaint(new GradientPaint(8f, 4f, Color.gray, 2f, 9f, Color.blue));
-        assertTrue(t1.equals(t2));
+		// axisLabelPaint;
+		t1.setAxisLabelPaint(new GradientPaint(8f, 4f, Color.gray, 2f, 9f,
+				Color.blue));
+		assertFalse(t1.equals(t2));
+		t2.setAxisLabelPaint(new GradientPaint(8f, 4f, Color.gray, 2f, 9f,
+				Color.blue));
+		assertTrue(t1.equals(t2));
 
-        //tickLabelPaint;
-        t1.setTickLabelPaint(new GradientPaint(3f, 4f, Color.red, 5f, 6f, Color.yellow));
-        assertFalse(t1.equals(t2));
-        t2.setTickLabelPaint(new GradientPaint(3f, 4f, Color.red, 5f, 6f, Color.yellow));
-        assertTrue(t1.equals(t2));
+		// tickLabelPaint;
+		t1.setTickLabelPaint(new GradientPaint(3f, 4f, Color.red, 5f, 6f,
+				Color.yellow));
+		assertFalse(t1.equals(t2));
+		t2.setTickLabelPaint(new GradientPaint(3f, 4f, Color.red, 5f, 6f,
+				Color.yellow));
+		assertTrue(t1.equals(t2));
 
-        //itemLabelPaint;
-        t1.setItemLabelPaint(new GradientPaint(2f, 5f, Color.gray, 1f, 2f, Color.blue));
-        assertFalse(t1.equals(t2));
-        t2.setItemLabelPaint(new GradientPaint(2f, 5f, Color.gray, 1f, 2f, Color.blue));
-        assertTrue(t1.equals(t2));
+		// itemLabelPaint;
+		t1.setItemLabelPaint(new GradientPaint(2f, 5f, Color.gray, 1f, 2f,
+				Color.blue));
+		assertFalse(t1.equals(t2));
+		t2.setItemLabelPaint(new GradientPaint(2f, 5f, Color.gray, 1f, 2f,
+				Color.blue));
+		assertTrue(t1.equals(t2));
 
-        //shadowVisible;
-        t1.setShadowVisible(!t1.isShadowVisible());
-        assertFalse(t1.equals(t2));
-        t2.setShadowVisible(t1.isShadowVisible());
-        assertTrue(t1.equals(t2));
+		// shadowVisible;
+		t1.setShadowVisible(!t1.isShadowVisible());
+		assertFalse(t1.equals(t2));
+		t2.setShadowVisible(t1.isShadowVisible());
+		assertTrue(t1.equals(t2));
 
-        //shadowPaint;
-        t1.setShadowPaint(new GradientPaint(7f, 1f, Color.blue, 4f, 6f, Color.red));
-        assertFalse(t1.equals(t2));
-        t2.setShadowPaint(new GradientPaint(7f, 1f, Color.blue, 4f, 6f, Color.red));
-        assertTrue(t1.equals(t2));
+		// shadowPaint;
+		t1.setShadowPaint(new GradientPaint(7f, 1f, Color.blue, 4f, 6f,
+				Color.red));
+		assertFalse(t1.equals(t2));
+		t2.setShadowPaint(new GradientPaint(7f, 1f, Color.blue, 4f, 6f,
+				Color.red));
+		assertTrue(t1.equals(t2));
 
-        //barPainter;
-        t1.setBarPainter(new StandardBarPainter());
-        assertFalse(t1.equals(t2));
-        t2.setBarPainter(new StandardBarPainter());
-        assertTrue(t1.equals(t2));
+		// barPainter;
+		t1.setBarPainter(new StandardBarPainter());
+		assertFalse(t1.equals(t2));
+		t2.setBarPainter(new StandardBarPainter());
+		assertTrue(t1.equals(t2));
 
-        //xyBarPainter;
-        t1.setXYBarPainter(new StandardXYBarPainter());
-        assertFalse(t1.equals(t2));
-        t2.setXYBarPainter(new StandardXYBarPainter());
-        assertTrue(t1.equals(t2));
+		// xyBarPainter;
+		t1.setXYBarPainter(new StandardXYBarPainter());
+		assertFalse(t1.equals(t2));
+		t2.setXYBarPainter(new StandardXYBarPainter());
+		assertTrue(t1.equals(t2));
 
-        //thermometerPaint;
-        t1.setThermometerPaint(new GradientPaint(9f, 7f, Color.red, 5f, 1f, Color.blue));
-        assertFalse(t1.equals(t2));
-        t2.setThermometerPaint(new GradientPaint(9f, 7f, Color.red, 5f, 1f, Color.blue));
-        assertTrue(t1.equals(t2));
+		// thermometerPaint;
+		t1.setThermometerPaint(new GradientPaint(9f, 7f, Color.red, 5f, 1f,
+				Color.blue));
+		assertFalse(t1.equals(t2));
+		t2.setThermometerPaint(new GradientPaint(9f, 7f, Color.red, 5f, 1f,
+				Color.blue));
+		assertTrue(t1.equals(t2));
 
-        //wallPaint;
-        t1.setWallPaint(new GradientPaint(4f, 5f, Color.red, 1f, 0f, Color.gray));
-        assertFalse(t1.equals(t2));
-        t2.setWallPaint(new GradientPaint(4f, 5f, Color.red, 1f, 0f, Color.gray));
-        assertTrue(t1.equals(t2));
+		// wallPaint;
+		t1.setWallPaint(new GradientPaint(4f, 5f, Color.red, 1f, 0f, Color.gray));
+		assertFalse(t1.equals(t2));
+		t2.setWallPaint(new GradientPaint(4f, 5f, Color.red, 1f, 0f, Color.gray));
+		assertTrue(t1.equals(t2));
 
-        //errorIndicatorPaint;
-        t1.setErrorIndicatorPaint(new GradientPaint(0f, 1f, Color.white, 2f, 3f, Color.blue));
-        assertFalse(t1.equals(t2));
-        t2.setErrorIndicatorPaint(new GradientPaint(0f, 1f, Color.white, 2f, 3f, Color.blue));
-        assertTrue(t1.equals(t2));
+		// errorIndicatorPaint;
+		t1.setErrorIndicatorPaint(new GradientPaint(0f, 1f, Color.white, 2f,
+				3f, Color.blue));
+		assertFalse(t1.equals(t2));
+		t2.setErrorIndicatorPaint(new GradientPaint(0f, 1f, Color.white, 2f,
+				3f, Color.blue));
+		assertTrue(t1.equals(t2));
 
-        //gridBandPaint
-        t1.setGridBandPaint(new GradientPaint(1f, 2f, Color.white, 4f, 8f, Color.red));
-        assertFalse(t1.equals(t2));
-        t2.setGridBandPaint(new GradientPaint(1f, 2f, Color.white, 4f, 8f, Color.red));
-        assertTrue(t1.equals(t2));
+		// gridBandPaint
+		t1.setGridBandPaint(new GradientPaint(1f, 2f, Color.white, 4f, 8f,
+				Color.red));
+		assertFalse(t1.equals(t2));
+		t2.setGridBandPaint(new GradientPaint(1f, 2f, Color.white, 4f, 8f,
+				Color.red));
+		assertTrue(t1.equals(t2));
 
-        //gridBandAlternatePaint
-        t1.setGridBandAlternatePaint(new GradientPaint(1f, 4f, Color.green, 1f, 2f, Color.red));
-        assertFalse(t1.equals(t2));
-        t2.setGridBandAlternatePaint(new GradientPaint(1f, 4f, Color.green, 1f, 2f, Color.red));
-        assertTrue(t1.equals(t2));
+		// gridBandAlternatePaint
+		t1.setGridBandAlternatePaint(new GradientPaint(1f, 4f, Color.green, 1f,
+				2f, Color.red));
+		assertFalse(t1.equals(t2));
+		t2.setGridBandAlternatePaint(new GradientPaint(1f, 4f, Color.green, 1f,
+				2f, Color.red));
+		assertTrue(t1.equals(t2));
 
-    }
+		// small font
+		Font f = new Font("NewFont", Font.BOLD, 3);
+		t1.setSmallFont(f);
+		assertFalse(t1.equals(t2));
+		t2.setSmallFont(f);
+		assertTrue(t1.equals(t2));
 
-    /**
-     * Serialize an instance, restore it, and check for equality.
-     */
-    public void testSerialization() {
-        StandardChartTheme t1 = new StandardChartTheme("Name");
-        StandardChartTheme t2 = null;
-        try {
-            ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-            ObjectOutput out = new ObjectOutputStream(buffer);
-            out.writeObject(t1);
-            out.close();
+	}
 
-            ObjectInput in = new ObjectInputStream(
-                    new ByteArrayInputStream(buffer.toByteArray()));
-            t2 = (StandardChartTheme) in.readObject();
-            in.close();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        assertTrue(t1.equals(t2));
-    }
+	/**
+	 * Serialize an instance, restore it, and check for equality.
+	 */
+	public void testSerialization() {
+		StandardChartTheme t1 = new StandardChartTheme("Name");
+		StandardChartTheme t2 = null;
+		try {
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			ObjectOutput out = new ObjectOutputStream(buffer);
+			out.writeObject(t1);
+			out.close();
 
-    /**
-     * Basic checks for cloning.
-     */
-    public void testCloning() {
-        StandardChartTheme t1 = new StandardChartTheme("Name");
-        StandardChartTheme t2 = null;
-        try {
-            t2 = (StandardChartTheme) t1.clone();
-        }
-        catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
-        assertTrue(t1 != t2);
-        assertTrue(t1.getClass() == t2.getClass());
-        assertTrue(t1.equals(t2));
-    }
+			ObjectInput in = new ObjectInputStream(new ByteArrayInputStream(
+					buffer.toByteArray()));
+			t2 = (StandardChartTheme) in.readObject();
+			in.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		assertTrue(t1.equals(t2));
+	}
+
+	/**
+	 * Basic checks for cloning.
+	 */
+	public void testCloning() {
+		StandardChartTheme t1 = new StandardChartTheme("Name");
+		StandardChartTheme t2 = null;
+		try {
+			t2 = (StandardChartTheme) t1.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		assertTrue(t1 != t2);
+		assertTrue(t1.getClass() == t2.getClass());
+		assertTrue(t1.equals(t2));
+	}
+
+	public void testCreateJFreeTheme_NullName() {
+		try {
+			ChartTheme theme = new StandardChartTheme(null, false);
+			fail();
+		} catch (IllegalArgumentException e) {
+
+		}
+	}
+
+	public void testCreateJFreeTheme() {
+		ChartTheme theme = StandardChartTheme.createJFreeTheme();
+
+		assertTrue(theme instanceof StandardChartTheme);
+		assertEquals("JFree", ((StandardChartTheme) theme).getName());
+
+		testStandardThemeColor((StandardChartTheme) theme);
+	}
+
+	public void testCreateDarknessTheme() {
+		ChartTheme theme = StandardChartTheme.createDarknessTheme();
+
+		assertTrue(theme instanceof StandardChartTheme);
+
+		testStandardThemeColor((StandardChartTheme) theme);
+	}
+
+	public void testCreateLegacyTheme() {
+		ChartTheme theme = StandardChartTheme.createLegacyTheme();
+
+		assertTrue(theme instanceof StandardChartTheme);
+
+		testStandardThemeColor((StandardChartTheme) theme);
+	}
+
+	public void testSettersIllegalArgumentsExceptions() {
+		StandardChartTheme theme = (StandardChartTheme) StandardChartTheme
+				.createJFreeTheme();
+		try {
+			theme.setExtraLargeFont(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNotNull(theme.getExtraLargeFont());
+		}
+		try {
+			theme.setLargeFont(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNotNull(theme.getLargeFont());
+		}
+		try {
+			theme.setRegularFont(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNotNull(theme.getRegularFont());
+		}
+		try {
+			theme.setSmallFont(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNotNull(theme.getSmallFont());
+		}
+		try {
+			theme.setTitlePaint(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNotNull(theme.getTitlePaint());
+		}
+		try {
+			theme.setSubtitlePaint(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNotNull(theme.getSubtitlePaint());
+		}
+		try {
+			theme.setChartBackgroundPaint(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNotNull(theme.getChartBackgroundPaint());
+		}
+		try {
+			theme.setLegendBackgroundPaint(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNotNull(theme.getLegendBackgroundPaint());
+		}
+		try {
+			theme.setLegendItemPaint(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNotNull(theme.getLegendItemPaint());
+		}
+		try {
+			theme.setPlotBackgroundPaint(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNotNull(theme.getPlotBackgroundPaint());
+		}
+		try {
+			theme.setPlotOutlinePaint(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNotNull(theme.getPlotOutlinePaint());
+		}
+		try {
+			theme.setLabelLinkStyle(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNotNull(theme.getLabelLinkStyle());
+		}
+		try {
+			theme.setLabelLinkPaint(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNotNull(theme.getLabelLinkPaint());
+		}
+		try {
+			theme.setDomainGridlinePaint(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNotNull(theme.getDomainGridlinePaint());
+		}
+		try {
+			theme.setRangeGridlinePaint(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNotNull(theme.getRangeGridlinePaint());
+		}
+		try {
+			theme.setBaselinePaint(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNotNull(theme.getBaselinePaint());
+		}
+		try {
+			theme.setCrosshairPaint(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNotNull(theme.getCrosshairPaint());
+		}
+		try {
+			theme.setAxisOffset(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNotNull(theme.getAxisOffset());
+		}
+		try {
+			theme.setAxisLabelPaint(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNotNull(theme.getAxisLabelPaint());
+		}
+
+		try {
+			theme.setTickLabelPaint(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNotNull(theme.getTickLabelPaint());
+		}
+		try {
+			theme.setItemLabelPaint(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNotNull(theme.getItemLabelPaint());
+		}
+		try {
+			theme.setShadowPaint(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNotNull(theme.getShadowPaint());
+		}
+		try {
+			theme.setBarPainter(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNotNull(theme.getBarPainter());
+		}
+		try {
+			theme.setXYBarPainter(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNotNull(theme.getXYBarPainter());
+		}
+		try {
+			theme.setThermometerPaint(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNotNull(theme.getThermometerPaint());
+		}
+		try {
+			theme.setWallPaint(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNotNull(theme.getWallPaint());
+		}
+		try {
+			theme.setErrorIndicatorPaint(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNotNull(theme.getErrorIndicatorPaint());
+		}
+		try {
+			theme.setGridBandPaint(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNotNull(theme.getGridBandPaint());
+		}
+		try {
+			theme.setGridBandAlternatePaint(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNotNull(theme.getGridBandAlternatePaint());
+		}
+
+		try {
+			theme.setDrawingSupplier(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNotNull(theme.getDrawingSupplier());
+		}
+		try {
+			theme.apply(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+
+	}
+
+	private void testStandardThemeColor(StandardChartTheme st) {
+		assertNotNull(st.getTitlePaint());
+		assertNotNull(st.getSubtitlePaint());
+		assertNotNull(st.getLegendBackgroundPaint());
+		assertNotNull(st.getLegendItemPaint());
+		assertNotNull(st.getChartBackgroundPaint());
+		assertNotNull(st.getPlotBackgroundPaint());
+		assertNotNull(st.getPlotOutlinePaint());
+		assertNotNull(st.getBaselinePaint());
+		assertNotNull(st.getCrosshairPaint());
+		assertNotNull(st.getLabelLinkPaint());
+		assertNotNull(st.getTickLabelPaint());
+		assertNotNull(st.getAxisLabelPaint());
+		assertNotNull(st.getShadowPaint());
+		assertNotNull(st.getItemLabelPaint());
+		assertNotNull(st.getDrawingSupplier());
+		assertNotNull(st.getWallPaint());
+		assertNotNull(st.getErrorIndicatorPaint());
+		assertNotNull(st.getGridBandPaint());
+		assertNotNull(st.getGridBandAlternatePaint());
+	}
 
 }

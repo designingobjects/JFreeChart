@@ -48,7 +48,9 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartTheme;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.StandardChartTheme;
 import org.jfree.chart.event.ChartChangeEvent;
 import org.jfree.chart.event.ChartChangeListener;
 import org.jfree.chart.plot.MultiplePiePlot;
@@ -100,7 +102,9 @@ public class PieChartTests extends TestCase {
 
 	public void testCreatePieChart_WithoutURL() {
 		JFreeChart pie = createPieChart_WithoutURL();
-
+		ChartTheme theme = StandardChartTheme.createDarknessTheme();
+		theme.apply(pie);
+		
 		assertEquals("Pie Chart", pie.getTitle().getText());
 		assertNotNull(pie.getLegend());
 		assertNotNull(((PiePlot) pie.getPlot()).getToolTipGenerator());
@@ -108,7 +112,9 @@ public class PieChartTests extends TestCase {
 
 	public void testCreatePieChart_WithoutURLMinimalOptions() {
 		JFreeChart pie = createPieChart_WithoutURLMinimalOptions();
-
+		ChartTheme theme = StandardChartTheme.createDarknessTheme();
+		theme.apply(pie);
+		
 		assertEquals("Pie Chart", pie.getTitle().getText());
 		assertNull(pie.getLegend());
 		assertNull(((PiePlot) pie.getPlot()).getToolTipGenerator());
@@ -116,7 +122,9 @@ public class PieChartTests extends TestCase {
 
 	public void testCreatePieChart_MinimalOptions() {
 		JFreeChart pie = createPieChart_MinimalOptions();
-
+		ChartTheme theme = StandardChartTheme.createDarknessTheme();
+		theme.apply(pie);
+		
 		assertEquals("Pie Chart", pie.getTitle().getText());
 		assertNull(pie.getLegend());
 		assertNull(((PiePlot) pie.getPlot()).getToolTipGenerator());
@@ -125,14 +133,18 @@ public class PieChartTests extends TestCase {
 
 	public void testCreatePieChart_EnabledURL() {
 		JFreeChart pie = createPieChart_EnabledURL();
-
+		ChartTheme theme = StandardChartTheme.createDarknessTheme();
+		theme.apply(pie);
+		
 		assertEquals("Pie Chart", pie.getTitle().getText());
 		assertNotNull(((PiePlot) pie.getPlot()).getURLGenerator());
 	}
 
 	public void testCreatePieChart_TwoDataSets() {
 		JFreeChart pie = createPieChart_TwoDataSets();
-
+		ChartTheme theme = StandardChartTheme.createDarknessTheme();
+		theme.apply(pie);
+		
 		assertEquals("Pie Chart Two Data Sets", pie.getTitle().getText());
 		assertEquals("Bright red=change >=-10%, Bright green=change >=+10%",
 				((TextTitle) pie.getSubtitles().get(1)).getText());
@@ -143,7 +155,9 @@ public class PieChartTests extends TestCase {
 
 	public void testCreatePieChart_TwoDataSetsMinimalOptions() {
 		JFreeChart pie = createPieChart_TwoDataSetsMinimalOptions();
-
+		ChartTheme theme = StandardChartTheme.createDarknessTheme();
+		theme.apply(pie);
+		
 		assertEquals("Pie Chart Minimal Options", pie.getTitle().getText());
 		assertNull(pie.getBackgroundImage());
 		assertNull(pie.getLegend());
@@ -152,7 +166,9 @@ public class PieChartTests extends TestCase {
 
 	public void testCreatePieChart_TwoDataSetsSubtitleWithoutGreenIncrease() {
 		JFreeChart pie = createPieChart_TwoDataSetsSubtitleWithoutGreenIncrease();
-
+		ChartTheme theme = StandardChartTheme.createDarknessTheme();
+		theme.apply(pie);
+		
 		assertEquals("Pie Chart Subtitle Without Green Increase", pie
 				.getTitle().getText());
 		assertEquals("Bright green=change >=-101%, Bright red=change >=+101%",
@@ -161,6 +177,8 @@ public class PieChartTests extends TestCase {
 
 	public void testCreatePieChart_TwoDataSetsWithURL() {
 		JFreeChart pie = createPieChart_TwoDataSetsWithURL();
+		ChartTheme theme = StandardChartTheme.createDarknessTheme();
+		theme.apply(pie);
 
 		assertEquals("Pie Chart Two Data Sets", pie.getTitle().getText());
 		assertEquals("Bright red=change >=-10%, Bright green=change >=+10%",
@@ -173,7 +191,9 @@ public class PieChartTests extends TestCase {
 
 	public void testCreatePieChart_TwoDataSetsWithURLMinimalOptions() {
 		JFreeChart pie = createPieChart_TwoDataSetsWithURLMinimalOptions();
-
+		ChartTheme theme = StandardChartTheme.createDarknessTheme();
+		theme.apply(pie);
+		
 		assertEquals("Pie Chart Minimal Options", pie.getTitle().getText());
 		assertNull(pie.getBackgroundImage());
 		assertNull(pie.getLegend());
@@ -183,7 +203,9 @@ public class PieChartTests extends TestCase {
 
 	public void testCreatePieChart_TwoDataSetsWithURLSubtitleWithoutGreenIncrease() {
 		JFreeChart pie = createPieChart_TwoDataSetsWithURLSubtitleWithoutGreenIncrease();
-
+		ChartTheme theme = StandardChartTheme.createDarknessTheme();
+		theme.apply(pie);
+		
 		assertEquals("Pie Chart Subtitle Without Green Increase", pie
 				.getTitle().getText());
 		assertEquals("Bright green=change >=-101%, Bright red=change >=+101%",
@@ -192,7 +214,9 @@ public class PieChartTests extends TestCase {
 
 	public void testCreateRingChart_WithoutURL() {
 		JFreeChart ring = createRingChart_WithoutURL();
-
+		ChartTheme theme = StandardChartTheme.createDarknessTheme();
+		theme.apply(ring);
+		
 		assertEquals("Ring Chart", ring.getTitle().getText());
 		assertNotNull(ring.getLegend());
 		assertTrue(ring.getPlot() instanceof RingPlot);
@@ -201,7 +225,9 @@ public class PieChartTests extends TestCase {
 
 	public void testCreateRingChart_WithoutURLMinimalOptions() {
 		JFreeChart ring = createRingChart_WithoutURLMinimalOptions();
-
+		ChartTheme theme = StandardChartTheme.createDarknessTheme();
+		theme.apply(ring);
+		
 		assertEquals("Ring Chart", ring.getTitle().getText());
 		assertNull(ring.getLegend());
 		assertTrue(ring.getPlot() instanceof RingPlot);
@@ -210,7 +236,9 @@ public class PieChartTests extends TestCase {
 
 	public void testCreateRingChart_EnabledURL() {
 		JFreeChart ring = createRingChart_EnabledURL();
-
+		ChartTheme theme = StandardChartTheme.createDarknessTheme();
+		theme.apply(ring);
+		
 		assertEquals("Ring Chart", ring.getTitle().getText());
 		assertNotNull(ring.getLegend());
 		assertTrue(ring.getPlot() instanceof RingPlot);
@@ -220,7 +248,9 @@ public class PieChartTests extends TestCase {
 
 	public void testCreateRingChart_EnabledURLMinimalOptions() {
 		JFreeChart ring = createRingChart_EnabledURLMinimalOptions();
-
+		ChartTheme theme = StandardChartTheme.createDarknessTheme();
+		theme.apply(ring);
+		
 		assertEquals("Ring Chart", ring.getTitle().getText());
 		assertNull(ring.getLegend());
 		assertTrue(ring.getPlot() instanceof RingPlot);
@@ -230,7 +260,9 @@ public class PieChartTests extends TestCase {
 
 	public void testCreatePieChart3D_WithoutURL() {
 		JFreeChart pie = createPieChart3D_WithoutURL();
-
+		ChartTheme theme = StandardChartTheme.createDarknessTheme();
+		theme.apply(pie);
+		
 		assertEquals("Pie Chart 3D", pie.getTitle().getText());
 		assertNotNull(pie.getLegend());
 		assertTrue(pie.getPlot() instanceof PiePlot3D);
@@ -239,7 +271,9 @@ public class PieChartTests extends TestCase {
 
 	public void testCreatePieChart3D_WithoutURLMinimalOptions() {
 		JFreeChart pie = createPieChart3D_WithoutURLMinimalOptions();
-
+		ChartTheme theme = StandardChartTheme.createDarknessTheme();
+		theme.apply(pie);
+		
 		assertEquals("Pie Chart 3D", pie.getTitle().getText());
 		assertNull(pie.getLegend());
 		assertTrue(pie.getPlot() instanceof PiePlot3D);
@@ -248,7 +282,9 @@ public class PieChartTests extends TestCase {
 
 	public void testCreatePieChart3D_EnabledURL() {
 		JFreeChart pie = createPieChart3D_EnabledURL();
-
+		ChartTheme theme = StandardChartTheme.createDarknessTheme();
+		theme.apply(pie);
+		
 		assertEquals("Pie Chart 3D", pie.getTitle().getText());
 		assertNotNull(pie.getLegend());
 		assertTrue(pie.getPlot() instanceof PiePlot3D);
@@ -258,7 +294,9 @@ public class PieChartTests extends TestCase {
 
 	public void testCreatePieChart3D_EnabledURLMinimalOptions() {
 		JFreeChart pie = createPieChart3D_EnabledURLMinimalOptions();
-
+		ChartTheme theme = StandardChartTheme.createDarknessTheme();
+		theme.apply(pie);
+		
 		assertEquals("Pie Chart 3D", pie.getTitle().getText());
 		assertNull(pie.getLegend());
 		assertTrue(pie.getPlot() instanceof PiePlot3D);
@@ -268,7 +306,9 @@ public class PieChartTests extends TestCase {
 
 	public void testCreateMultiplePieChart_EnabledURLByRow() {
 		JFreeChart pie = createMultiplePieChart_EnabledURLByRow();
-
+		ChartTheme theme = StandardChartTheme.createDarknessTheme();
+		theme.apply(pie);
+		
 		assertEquals("Multiple Pie Chart", pie.getTitle().getText());
 		assertNotNull(pie.getLegend());
 		assertTrue(pie.getPlot() instanceof MultiplePiePlot);
@@ -281,7 +321,9 @@ public class PieChartTests extends TestCase {
 
 	public void testCreateMultiplePieChart_EnabledURLByCol() {
 		JFreeChart pie = createMultiplePieChart_EnabledURLByCol();
-
+		ChartTheme theme = StandardChartTheme.createDarknessTheme();
+		theme.apply(pie);
+		
 		assertEquals("Multiple Pie Chart", pie.getTitle().getText());
 		assertNotNull(pie.getLegend());
 		assertTrue(pie.getPlot() instanceof MultiplePiePlot);
@@ -294,7 +336,9 @@ public class PieChartTests extends TestCase {
 
 	public void testCreateMultiplePieChart_EnabledURLMinimalOptions() {
 		JFreeChart pie = createMultiplePieChart_EnabledURLMinimalOptions();
-
+		ChartTheme theme = StandardChartTheme.createDarknessTheme();
+		theme.apply(pie);
+		
 		assertEquals("Multiple Pie Chart", pie.getTitle().getText());
 		assertNull(pie.getLegend());
 		assertTrue(pie.getPlot() instanceof MultiplePiePlot);
@@ -318,7 +362,9 @@ public class PieChartTests extends TestCase {
 
 	public void testCreateMultiplePieChart3D_EnabledURLByRow() {
 		JFreeChart pie = createMultiplePieChart3D_EnabledURLByRow();
-
+		ChartTheme theme = StandardChartTheme.createDarknessTheme();
+		theme.apply(pie);
+		
 		assertEquals("Multiple Pie Chart 3D", pie.getTitle().getText());
 		assertNotNull(pie.getLegend());
 		assertTrue(pie.getPlot() instanceof MultiplePiePlot);
@@ -332,7 +378,9 @@ public class PieChartTests extends TestCase {
 
 	public void testCreateMultiplePieChart3D_EnabledURLByCol() {
 		JFreeChart pie = createMultiplePieChart3D_EnabledURLByCol();
-
+		ChartTheme theme = StandardChartTheme.createDarknessTheme();
+		theme.apply(pie);
+		
 		assertEquals("Multiple Pie Chart 3D", pie.getTitle().getText());
 		assertNotNull(pie.getLegend());
 		assertTrue(pie.getPlot() instanceof MultiplePiePlot);
@@ -346,7 +394,9 @@ public class PieChartTests extends TestCase {
 
 	public void testCreateMultiplePieChart3D_EnabledURLMinimalOptions() {
 		JFreeChart pie = createMultiplePieChart3D_EnabledURLMinimalOptions();
-
+		ChartTheme theme = StandardChartTheme.createDarknessTheme();
+		theme.apply(pie);
+		
 		assertEquals("Multiple Pie Chart 3D", pie.getTitle().getText());
 		assertNull(pie.getLegend());
 		assertTrue(pie.getPlot() instanceof MultiplePiePlot);
