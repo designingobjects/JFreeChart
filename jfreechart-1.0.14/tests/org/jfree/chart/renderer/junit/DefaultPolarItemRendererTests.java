@@ -41,6 +41,7 @@
 
 package org.jfree.chart.renderer.junit;
 
+import java.awt.Shape;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInput;
@@ -52,7 +53,9 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import org.jfree.chart.entity.EntityCollection;
 import org.jfree.chart.renderer.DefaultPolarItemRenderer;
+import org.jfree.data.xy.XYDataset;
 
 /**
  * Tests for the {@link DefaultPolarItemRenderer} class.
@@ -91,7 +94,7 @@ public class DefaultPolarItemRendererTests extends TestCase {
         assertTrue(r1.equals(r2));
 
     }
-
+    
     /**
      * Two objects that are equal are required to return the same hashCode.
      */
@@ -148,5 +151,27 @@ public class DefaultPolarItemRendererTests extends TestCase {
         }
         assertEquals(r1, r2);
     }
+    
+    //Checks IsFilled
+    public void testIsFilled() {
+        DefaultPolarItemRenderer r1 = new DefaultPolarItemRenderer();
+        DefaultPolarItemRenderer r2 = null;
+        assertFalse(r1.isSeriesFilled(1));
+        r1.setSeriesFilled(1, true);
+        assertTrue(r1.isSeriesFilled(1));
+        assertFalse(r2.isSeriesFilled(1));
+        assertFalse(r1.isSeriesFilled(2));
+        
+    }
+    
+    //Checks if equal to null
+    public void testEqualsNull(){
+    	DefaultPolarItemRenderer r1 = new DefaultPolarItemRenderer();
+    	assertFalse(r1.equals(null));
+    }
+    
+    
 
 }
+
+

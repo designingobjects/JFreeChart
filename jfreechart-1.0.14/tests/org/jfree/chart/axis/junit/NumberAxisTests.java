@@ -55,6 +55,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.text.DecimalFormat;
+import java.util.Locale;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -64,6 +65,7 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.axis.NumberTickUnit;
+import org.jfree.chart.axis.TickUnits;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
@@ -454,6 +456,16 @@ public class NumberAxisTests extends TestCase {
         //axis.setRangeType(RangeType.POSITIVE);
         //axis.setLowerBound(-5.0);
         //assertEquals(0.0, axis.getLowerBound(), EPSILON);
+    }
+    
+    //Matt's tests
+    public void testTicks(){
+    	NumberAxis a = new NumberAxis();
+    	Locale locale = null;
+		TickUnits units = new TickUnits();
+		assertFalse(units.equals(a.createStandardTickUnits(locale)));
+		assertFalse(units.equals(a.createIntegerTickUnits(locale)));
+		
     }
 
 }

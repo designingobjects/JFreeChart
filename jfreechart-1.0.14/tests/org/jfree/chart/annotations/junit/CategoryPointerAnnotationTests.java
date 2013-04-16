@@ -225,5 +225,17 @@ public class CategoryPointerAnnotationTests extends TestCase {
         assertEquals(a1, a2);
 
     }
+    
+    public void testEqual() {
+        CategoryPointerAnnotation a1 = new CategoryPointerAnnotation("Label",
+                "A", 20.0, Math.PI);
+        assertTrue(a1.equals(a1));
+        
+        assertFalse(a1.equals(null));
+        
+        
+    }
+    
+    
 
 }

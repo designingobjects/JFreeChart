@@ -124,5 +124,13 @@ public class AxisLocationTests extends TestCase {
         boolean same = location1 == location2;
         assertEquals(true, same);
     }
+    
+    //Matt's Tests
+    public void testOpposite(){
+    	AxisLocation a =  AxisLocation.BOTTOM_OR_RIGHT;
+    	assertEquals(a.getOpposite(), AxisLocation.TOP_OR_LEFT);
+    	assertEquals(AxisLocation.BOTTOM_OR_LEFT.getOpposite(), AxisLocation.TOP_OR_RIGHT);
+    	
+    }
 
 }

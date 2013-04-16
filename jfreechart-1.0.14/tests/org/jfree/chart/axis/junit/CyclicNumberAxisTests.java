@@ -187,6 +187,19 @@ public class CyclicNumberAxisTests extends TestCase {
         assertEquals(a1, a2);
 
     }
-
+    
+    //Matt's Tests
+    
+    public void testConstructors() {
+    	CyclicNumberAxis a = new CyclicNumberAxis(0.0);
+    	CyclicNumberAxis b = new CyclicNumberAxis(0.0, 0.0);
+    	CyclicNumberAxis c = new CyclicNumberAxis(0.0, "LOL");
+    	CyclicNumberAxis d = new CyclicNumberAxis(0.0, 0.0, "LOL");
+    	
+    	assertEquals(a, b);
+    	assertEquals(b, c);
+    	assertEquals(c, d);
+    	
+    }
 }
 

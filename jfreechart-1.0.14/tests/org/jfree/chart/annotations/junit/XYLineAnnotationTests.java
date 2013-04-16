@@ -202,5 +202,14 @@ public class XYLineAnnotationTests extends TestCase {
         assertEquals(a1, a2);
 
     }
+    
+    //Matt's code
+    public void testConstructor() {
+    	XYLineAnnotation a = new XYLineAnnotation(0, 0, 0, 0);
+    	XYLineAnnotation b = new XYLineAnnotation(0, 0, 0, 0, new BasicStroke(1.0f), Color.black);
+    	
+    	assertEquals(a,b);
+    	
+    }
 
 }

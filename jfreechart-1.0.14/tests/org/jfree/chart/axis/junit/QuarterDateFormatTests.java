@@ -47,6 +47,8 @@ import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
+import java.text.FieldPosition;
+import java.util.Date;
 import java.util.TimeZone;
 
 import junit.framework.Test;
@@ -160,6 +162,19 @@ public class QuarterDateFormatTests extends TestCase {
             fail(e.toString());
         }
         assertTrue(qf1.equals(qf2));
+    }
+    
+    //Matt's Tests
+    public void testFormat(){
+    	QuarterDateFormat a = new QuarterDateFormat(TimeZone.getTimeZone(
+        "GMT"), new String[] {"1", "2", "3", "4"});
+    	
+    	Date date = new Date(500000);
+		StringBuffer string = new StringBuffer();
+		FieldPosition position = new FieldPosition(0);
+		
+		assertFalse(string.equals(a.format(date, string, position)));
+		
     }
 
 }
