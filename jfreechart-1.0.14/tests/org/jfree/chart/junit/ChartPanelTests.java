@@ -43,6 +43,7 @@ package org.jfree.chart.junit;
 
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D.Double;
@@ -65,6 +66,7 @@ import org.jfree.chart.event.ChartChangeEvent;
 import org.jfree.chart.event.ChartChangeListener;
 import org.jfree.chart.panel.CrosshairOverlay;
 import org.jfree.chart.panel.Overlay;
+import org.jfree.chart.plot.Plot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.xy.DefaultXYDataset;
@@ -358,26 +360,30 @@ public class ChartPanelTests extends TestCase
     }
     
     public void testConstructor2() {
-    	JFreeChart chart = new JFreeChart(null);
+    	Plot plot = new XYPlot();
+    	JFreeChart chart = new JFreeChart(plot);
     	ChartPanel panel = new ChartPanel(chart, true);
-    	assertEquals(panel.getHeight(), 420);
+    	assertEquals(panel.getChart(), chart);
     }
     
     public void testConstructor3() {
-    	JFreeChart chart = new JFreeChart(null);
+    	Plot plot = new XYPlot();
+    	JFreeChart chart = new JFreeChart(plot);
     	ChartPanel panel = new ChartPanel(chart, true, true, true, true, true);
-    	assertEquals(panel.getHeight(), 420);
+    	assertEquals(panel.getChart(), chart);
     }
     
     public void testEnforeFileExtensions() {
-    	JFreeChart chart = new JFreeChart(null);
+    	Plot plot = new XYPlot();
+    	JFreeChart chart = new JFreeChart(plot);
     	ChartPanel panel = new ChartPanel(chart, true);
     	panel.setEnforceFileExtensions(true);
     	assertTrue(panel.isEnforceFileExtensions());
     }
     
     public void testTranslateJava2DToScreen() {
-    	JFreeChart chart = new JFreeChart(null);
+    	Plot plot = new XYPlot();
+    	JFreeChart chart = new JFreeChart(plot);
     	ChartPanel panel = new ChartPanel(chart, true);
     	ChartPanel panel2 = new ChartPanel(chart, true);
     	Point2D point = new Point(5,5);
@@ -385,11 +391,12 @@ public class ChartPanelTests extends TestCase
     	assertEquals(point, point2);
     	panel.translateJava2DToScreen(point);
     	panel2.translateJava2DToScreen(point2);
-    	assertEquals(panel, panel2);
+    	assertEquals(panel.getChart(), panel2.getChart());
     }
     
     public void testScale() {
-    	JFreeChart chart = new JFreeChart(null);
+    	Plot plot = new XYPlot();
+    	JFreeChart chart = new JFreeChart(plot);
     	ChartPanel panel = new ChartPanel(chart, true);
     	Rectangle2D rectangle = new Rectangle();
     	Rectangle2D.Double rectangle2 = new Rectangle2D.Double(0, 0, 0, 0);
@@ -397,10 +404,4 @@ public class ChartPanelTests extends TestCase
     	
     }
     
-    public void getPrint() {
-    	JFreeChart chart = new JFreeChart(null);
-    	ChartPanel panel = new ChartPanel(chart, true);
-    	assertEquals(panel.print(null, null, 1), 1);
-
-    }
 }

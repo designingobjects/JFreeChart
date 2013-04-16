@@ -43,6 +43,7 @@
 package org.jfree.chart.annotations.junit;
 
 import java.awt.BasicStroke;
+import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -221,16 +222,17 @@ public class XYShapeAnnotationTests extends TestCase {
     
     //Matt's Tests
     public void testConstructor() {
-    	Shape shape = null;
+    	Shape shape = new Rectangle();
     		
     	XYShapeAnnotation a = new XYShapeAnnotation(shape);
     	XYShapeAnnotation b = new XYShapeAnnotation(shape, new BasicStroke(1.0f), Color.black);
     	
-    	assertEquals(a, b);
+    	assertTrue(a.equals(b));
     }
     
     public void testEqualsExtended() {
-    	XYShapeAnnotation a = new XYShapeAnnotation(null);
+    	Shape shape = new Rectangle();
+    	XYShapeAnnotation a = new XYShapeAnnotation(shape);
     	assertTrue(a.equals(a));
     	assertFalse(a.equals(null));
     }

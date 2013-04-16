@@ -173,7 +173,7 @@ public class QuarterDateFormatTests extends TestCase {
 		StringBuffer string = new StringBuffer();
 		FieldPosition position = new FieldPosition(0);
 		
-		assertFalse(string.equals(a.format(date, string, position)));
+		assertTrue(string.equals(a.format(date, string, position)));
 		
     }
 

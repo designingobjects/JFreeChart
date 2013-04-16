@@ -151,5 +151,15 @@ public class CategoryLabelEntityTests extends TestCase {
         }
         assertEquals(e1, e2);
     }
+    
+    public void testHash() {
+        CategoryLabelEntity e1 = new CategoryLabelEntity("A",
+                new Rectangle2D.Double(1.0, 2.0, 3.0, 4.0), "ToolTip", "URL");
+        CategoryLabelEntity e2 = new CategoryLabelEntity("B",
+                new Rectangle2D.Double(2.0, 4.0, 6.0, 8.0), "ToolTip", "URL");
+
+        assertFalse(e1.hashCode() == e2.hashCode());
+        
+    }
 
 }

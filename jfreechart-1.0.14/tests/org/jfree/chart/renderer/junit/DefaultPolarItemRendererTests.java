@@ -155,11 +155,9 @@ public class DefaultPolarItemRendererTests extends TestCase {
     //Checks IsFilled
     public void testIsFilled() {
         DefaultPolarItemRenderer r1 = new DefaultPolarItemRenderer();
-        DefaultPolarItemRenderer r2 = null;
         assertFalse(r1.isSeriesFilled(1));
         r1.setSeriesFilled(1, true);
         assertTrue(r1.isSeriesFilled(1));
-        assertFalse(r2.isSeriesFilled(1));
         assertFalse(r1.isSeriesFilled(2));
         
     }

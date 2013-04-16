@@ -45,6 +45,9 @@ package org.jfree.chart.block.junit;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GradientPaint;
+import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.awt.geom.Rectangle2D;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInput;
@@ -179,6 +182,15 @@ public class LabelBlockTests extends TestCase {
             e.printStackTrace();
         }
         assertEquals(b1, b2);
+    }
+    
+    //Matt's Tests
+    
+    public void testConstuctors(){
+    	LabelBlock a = new LabelBlock("Label");
+    	LabelBlock b = new LabelBlock("Label", new Font("SansSerif", Font.PLAIN, 10));
+    	assertEquals(a, b);
+    	
     }
 
 }

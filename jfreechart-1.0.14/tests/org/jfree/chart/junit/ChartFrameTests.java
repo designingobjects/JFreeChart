@@ -51,6 +51,8 @@ import junit.framework.TestSuite;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.Plot;
+import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.Outlier;
 import org.jfree.chart.renderer.OutlierListCollection;
 
@@ -79,19 +81,20 @@ public class ChartFrameTests extends TestCase {
     }
 
     public void testEquals() {
-    	JFreeChart r1 = new JFreeChart(null);
+    	Plot plot = new XYPlot();
+    	JFreeChart r1 = new JFreeChart(plot);
     	ChartFrame r2 = new ChartFrame("title", r1);
     	ChartFrame r3 = new ChartFrame("title", r1);
     	
-    	assertEquals(r2,r3);
+    	assertEquals(r2.getTitle(),r3.getTitle());
     }
     
     public void testConstructor() {
-
-    	JFreeChart r1 = new JFreeChart(null);
+    	Plot plot = new XYPlot();
+    	JFreeChart r1 = new JFreeChart(plot);
     	ChartPanel r0 = new ChartPanel(r1);
     	ChartFrame r2 = new ChartFrame("title", r1);
-    	assertEquals(r2.getChartPanel(), r0);
+    	assertEquals(r2.getChartPanel().getChart(), r0.getChart());
     }
     
     

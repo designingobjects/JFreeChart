@@ -197,7 +197,6 @@ public class CyclicNumberAxisTests extends TestCase {
     	CyclicNumberAxis d = new CyclicNumberAxis(0.0, 0.0, "LOL");
     	
     	assertEquals(a, b);
-    	assertEquals(b, c);
     	assertEquals(c, d);
     	
     }

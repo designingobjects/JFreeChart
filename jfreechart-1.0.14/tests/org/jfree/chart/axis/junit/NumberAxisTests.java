@@ -461,10 +461,10 @@ public class NumberAxisTests extends TestCase {
     //Matt's tests
     public void testTicks(){
     	NumberAxis a = new NumberAxis();
-    	Locale locale = null;
+    	Locale locale = Locale.ENGLISH;
 		TickUnits units = new TickUnits();
-		assertFalse(units.equals(a.createStandardTickUnits(locale)));
-		assertFalse(units.equals(a.createIntegerTickUnits(locale)));
+		assertFalse(units.equals(NumberAxis.createStandardTickUnits(locale)));
+		assertFalse(units.equals(NumberAxis.createIntegerTickUnits(locale)));
 		
     }
 

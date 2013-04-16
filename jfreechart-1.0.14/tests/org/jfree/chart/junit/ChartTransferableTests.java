@@ -16,8 +16,11 @@ import java.awt.datatransfer.DataFlavor;
 
 	import org.jfree.chart.ChartRenderingInfo;
 import org.jfree.chart.ChartTransferable;
+import org.jfree.chart.JFreeChart;
 	import org.jfree.chart.entity.ChartEntity;
 import org.jfree.chart.entity.StandardEntityCollection;
+import org.jfree.chart.plot.Plot;
+import org.jfree.chart.plot.XYPlot;
 
 	/**
 	 * Tests for the {@link ChartRenderingInfo} class.
@@ -46,7 +49,9 @@ import org.jfree.chart.entity.StandardEntityCollection;
 	    }
 	    
 	    public void testIsDataFlavorSupported() {
-	    	ChartTransferable chart = new ChartTransferable(null, 0, 0);
+	    	Plot plot = new XYPlot();
+	    	JFreeChart r1 = new JFreeChart(plot);
+	    	ChartTransferable chart = new ChartTransferable(r1, 0, 0);
 	    	assertTrue(chart.isDataFlavorSupported(imageFlavor));
 	    }
 	}
