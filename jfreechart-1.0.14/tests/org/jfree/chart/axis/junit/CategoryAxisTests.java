@@ -45,6 +45,9 @@ package org.jfree.chart.axis.junit;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GradientPaint;
+import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInput;
@@ -56,8 +59,15 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.CategoryLabelPositions;
+import org.jfree.chart.axis.SubCategoryAxis;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.text.TextBlock;
+import org.jfree.ui.RectangleEdge;
 
 /**
  * Tests for the {@link CategoryAxis} class.
@@ -89,7 +99,10 @@ public class CategoryAxisTests extends TestCase {
 
         CategoryAxis a1 = new CategoryAxis("Test");
         CategoryAxis a2 = new CategoryAxis("Test");
-        assertTrue(a1.equals(a2));
+        assertTrue(a1.equals(a2)); 	
+
+        
+        
 
         // lowerMargin
         a1.setLowerMargin(0.15);
@@ -248,6 +261,41 @@ public class CategoryAxisTests extends TestCase {
             e.printStackTrace();
         }
         assertEquals(a1, a2);
+
+    }
+    
+
+    //CataAxis.Draw + AreaChart
+    public void testDraw(){
+    	JFreeChart chart = ChartFactory.createAreaChart("Test",
+                "Category", "Value", null, PlotOrientation.VERTICAL,
+                true, false, false);
+    	CategoryPlot plot = (CategoryPlot) chart.getPlot();
+    	CategoryAxis Axis = new CategoryAxis("CategoryAxis");
+        Rectangle2D Rect1 = new Rectangle2D.Double(0, 0, 100, 100);
+        Rectangle2D Rect2 = new Rectangle2D.Double(0, 0, 30, 45);
+        RectangleEdge rEdgeB = RectangleEdge.BOTTOM;
+    	plot.setDomainAxis(Axis);
+        boolean success = false;
+        try {
+            BufferedImage image = new BufferedImage(200 , 100,
+                    BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2 = image.createGraphics();
+
+            Axis.draw(g2, 0.0, Rect1,Rect2, rEdgeB, null);
+            chart.draw(g2, new Rectangle2D.Double(0, 0, 200, 100), null, null);
+
+            g2.dispose();
+            success = true;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            success = false;
+        }
+        assertTrue(success);
     }
 
+
+
+    
 }

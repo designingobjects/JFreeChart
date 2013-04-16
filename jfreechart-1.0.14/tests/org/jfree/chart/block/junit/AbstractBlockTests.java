@@ -41,7 +41,9 @@
 package org.jfree.chart.block.junit;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInput;
@@ -53,10 +55,19 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.block.AbstractBlock;
 import org.jfree.chart.block.BlockBorder;
 import org.jfree.chart.block.EmptyBlock;
+import org.jfree.chart.block.RectangleConstraint;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.text.TextBlock;
+import org.jfree.ui.RectangleEdge;
 import org.jfree.ui.RectangleInsets;
+import org.jfree.ui.Size2D;
 
 /**
  * Tests for the {@link AbstractBlock} class.
@@ -183,5 +194,52 @@ public class AbstractBlockTests extends TestCase {
         }
         assertEquals(b1, b2);
     }
+    
+    
+    //arrange
+    public void testArrange(){
+    	EmptyBlock b1 = new EmptyBlock(1.0, 2.0);
+    	JFreeChart chart = ChartFactory.createBarChart("Test",
+                "Category", "Value", null, PlotOrientation.VERTICAL,
+                true, false, false);
+    	CategoryPlot plot = (CategoryPlot) chart.getPlot();
+    	CategoryAxis Axis = new CategoryAxis("CategoryAxis");
+    	TextBlock t1 = new TextBlock();
+        Rectangle2D Rect1 = new Rectangle2D.Double(0, 0, 100, 100);
+        Rectangle2D Rect2 = new Rectangle2D.Double(0, 0, 30, 45);
+        RectangleEdge rEdgeB = RectangleEdge.LEFT;
+    	plot.setDomainAxis(Axis);
+        boolean success = false;
+        try {
+            BufferedImage image = new BufferedImage(200 , 100,
+                    BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2 = image.createGraphics();
+            
+            
+            b1.arrange(g2, new RectangleConstraint(200, 100));
+            
+            
+            Size2D s1 = new Size2D(1, 2);
+            assertEquals(s1, (b1.arrange(g2)));
+            
+            RectangleConstraint a1 = new RectangleConstraint(200, 100);
+            Size2D s2 = new Size2D(200, 100);
+            assertEquals(s2, (b1.arrange(g2, a1)));
+            
+
+            Axis.draw(g2, 0.0, Rect1,Rect2, rEdgeB, null);
+            chart.draw(g2, new Rectangle2D.Double(0, 0, 200, 100), null, null);
+
+            g2.dispose();
+            success = true;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            success = false;
+        }
+        assertTrue(success);
+    }
 
 }
+
+

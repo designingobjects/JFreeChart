@@ -219,5 +219,34 @@ public class XYIntervalSeriesCollectionTests extends TestCase {
             assertTrue(false);  // wrong outcome
         }
     }
+    
+    
+    public void testRemoveSeries2() {
+        XYIntervalSeriesCollection c = new XYIntervalSeriesCollection();
+        XYIntervalSeries s1 = new XYIntervalSeries("s1");
+        XYIntervalSeries s2 = new XYIntervalSeries("s1");
+               
+        c.addSeries(s1);
+        c.addSeries(s2);
+        assertEquals(0,c.getItemCount(0));
+        assertEquals(0,c.getItemCount(1));
+        
+        
+        c.removeSeries(s1);
+        assertEquals(1, c.getSeriesCount());
+
+    }
+    
+    public void testRemoveAllSeries(){
+    	
+        XYIntervalSeriesCollection c = new XYIntervalSeriesCollection();
+        XYIntervalSeries s1 = new XYIntervalSeries("s1");
+        XYIntervalSeries s2 = new XYIntervalSeries("s1");
+        c.addSeries(s1);
+        c.addSeries(s2);
+        assertEquals(2, c.getSeriesCount());
+        c.removeAllSeries();
+        assertEquals(0, c.getSeriesCount());
+    }
 
 }

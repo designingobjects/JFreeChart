@@ -420,5 +420,41 @@ public class DefaultCategoryDatasetTests extends TestCase {
         }
         assertTrue(pass);
     }
+    
+    
+    /**
+     * Some checks for the removeColumn(int) method.
+     */
+    public void testRemoveColumn2() {
+        DefaultCategoryDataset d = new DefaultCategoryDataset();
+        d.addValue(1.0, "R1", "C1");
+        d.addValue(2.0, "R2", "C2");
+        assertEquals(2, d.getColumnCount());
+        d.removeColumn(1);
+        assertEquals(1, d.getColumnCount());
+    }
+
+    /**
+     * Some checks for the removeRow(int) method.
+     */
+    public void testRemoveRow2() {
+        DefaultCategoryDataset d = new DefaultCategoryDataset();
+        d.addValue(1.0, "R1", "C1");
+        d.addValue(2.0, "R2", "C2");
+        assertEquals(2, d.getRowCount());
+        d.removeRow(1);
+        assertEquals(1, d.getRowCount());
+
+    }
+    
+    public void testClear() {
+        DefaultCategoryDataset d = new DefaultCategoryDataset();
+        d.addValue(1.0, "R1", "C1");
+        d.addValue(2.0, "R2", "C2");
+        assertEquals(2, d.getRowCount());
+        d.clear();
+        assertEquals(0, d.getRowCount());
+    }
+    
 
 }

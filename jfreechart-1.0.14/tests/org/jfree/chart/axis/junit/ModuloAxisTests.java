@@ -46,6 +46,7 @@ import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
+import java.text.DecimalFormat;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -144,6 +145,36 @@ public class ModuloAxisTests extends TestCase {
         }
         assertEquals(a1, a2);
 
+    }
+    
+    
+   
+    //for testing
+    
+    double roundTwoDecimals(double d) {
+        DecimalFormat twoDForm = new DecimalFormat("#.##");
+    return Double.valueOf(twoDForm.format(d));
+}
+    
+    public void testResize(){
+    	
+    	 ModuloAxis a1 = new ModuloAxis("Test", new Range(0.0, 1.0));
+    	 ModuloAxis a2 = new ModuloAxis("Test", new Range(0.0, 1.0));
+    	 assertEquals(a1.getDisplayStart(),270.0);
+    	 assertEquals(a2.getDisplayEnd(),90.0);
+    	 
+    	 a1.resizeRange(0.1);
+    	 a2.resizeRange(0.1,0.5);
+    	 
+    	 assertEquals(a1.getDisplayEnd(),a2.getDisplayEnd());	 
+    	 assertEquals(roundTwoDecimals(a2.getDisplayStart()),0.45);
+    	 assertEquals(roundTwoDecimals(a2.getDisplayEnd()),0.55);
+    	 
+    	 a2.resizeRange(0.0);
+    	  
+    	 assertEquals(roundTwoDecimals(a2.getDisplayStart()),0.45);
+    	 assertEquals(roundTwoDecimals(a2.getDisplayEnd()),0.55);
+    	   	
     }
 
 }

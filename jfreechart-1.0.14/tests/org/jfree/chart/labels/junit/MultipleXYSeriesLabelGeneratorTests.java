@@ -47,12 +47,16 @@ import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
+import java.util.Date;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.jfree.chart.labels.MultipleXYSeriesLabelGenerator;
+import org.jfree.data.xy.DefaultOHLCDataset;
+import org.jfree.data.xy.DefaultTableXYDataset;
+import org.jfree.data.xy.OHLCDataItem;
 import org.jfree.util.PublicCloneable;
 
 /**
@@ -173,6 +177,17 @@ public class MultipleXYSeriesLabelGeneratorTests extends TestCase {
         }
         assertEquals(g1, g2);
 
+    }
+    
+    public void testgenerateLabel(){
+    
+    	MultipleXYSeriesLabelGenerator g1 = new MultipleXYSeriesLabelGenerator();
+    	OHLCDataItem item1 = new OHLCDataItem(new Date(1L), 1.0, 2.0, 3.0, 4.0,5.0);
+        OHLCDataItem[] items = new OHLCDataItem[] {item1};
+        DefaultOHLCDataset d1 = new DefaultOHLCDataset("Series 1", items);
+    	g1.addSeriesLabel(0, "Add0");
+    	assertEquals(g1.generateLabel(d1, 0), "Series 1" + "\n" + "Add0");
+    	
     }
 
 }
