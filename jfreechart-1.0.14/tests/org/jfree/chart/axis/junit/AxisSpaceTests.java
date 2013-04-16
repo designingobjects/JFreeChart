@@ -46,6 +46,7 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.jfree.chart.axis.AxisSpace;
+import org.jfree.ui.RectangleEdge;
 
 /**
  * Tests for the {@link AxisSpace} class.
