@@ -68,7 +68,8 @@ public class RendererPackageTests extends TestCase {
         suite.addTestSuite(GrayPaintScaleTests.class);
         suite.addTestSuite(LookupPaintScaleTests.class);
         suite.addTestSuite(OutlierTests.class);
-        suite.addTestSuite(RendererUtilitiesTests.class);
+        suite.addTestSuite(OutlierListCollectionTests.class);
+        
         return suite;
     }
 

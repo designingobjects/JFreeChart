@@ -103,6 +103,9 @@ public class ChartPackageTests extends TestCase {
 		suite.addTestSuite(XYStepAreaChartTests.class);
 		suite.addTestSuite(XYStepChartTests.class);
 		suite.addTestSuite(ChartUtilitiesTest.class);
+		suite.addTestSuite(ChartFrameTests.class);
+		suite.addTestSuite(ChartPanelTests.class);
+		suite.addTestSuite(ChartTransferableTests.class);
 		
 		return suite;
 	}

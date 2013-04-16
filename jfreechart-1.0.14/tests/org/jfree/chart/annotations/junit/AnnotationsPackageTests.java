@@ -45,6 +45,8 @@
 
 package org.jfree.chart.annotations.junit;
 
+import org.jfree.chart.junit.ChartUtilitiesTest;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -75,6 +77,7 @@ public class AnnotationsPackageTests extends TestCase {
         suite.addTestSuite(XYShapeAnnotationTests.class);
         suite.addTestSuite(XYTextAnnotationTests.class);
         suite.addTestSuite(XYTitleAnnotationTests.class);
+        suite.addTestSuite(XYDataImageAnnotationTests.class);
         return suite;
     }
 
