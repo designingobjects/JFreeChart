@@ -75,6 +75,8 @@ public class EntityPackageTests extends TestCase {
         suite.addTestSuite(JFreeChartEntityTests.class);
         suite.addTestSuite(PlotEntityTests.class);
         suite.addTestSuite(TitleEntityTests.class);
+        suite.addTestSuite(ChartEntityTests.class);
+        
         
         return suite;
     }
