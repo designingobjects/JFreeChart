@@ -153,4 +153,42 @@ public class StandardEntityCollectionTests extends TestCase {
         assertEquals(c1, c2);
     }
 
+    
+    
+    
+    public void testChartEntity() {
+        PieSectionEntity e1 = new PieSectionEntity(new Rectangle2D.Double(1.0,
+                2.0, 3.0, 4.0), new DefaultPieDataset(), 0, 1, "Key",
+                "ToolTip", "URL");
+        PieSectionEntity e2 = new PieSectionEntity(new Rectangle2D.Double(1.0,
+                3.0, 3.0, 4.0), new DefaultPieDataset(), 0, 1, "Key",
+                "ToolTip", "URL");
+        
+        Rectangle2D r1 = new Rectangle2D.Double(1.0,2.0, 3.0, 4.0);
+        
+        StandardEntityCollection c1 = new StandardEntityCollection();
+        c1.add(e1);
+        StandardEntityCollection c2 = null;
+        assertEquals(e1.getArea(),r1);
+        
+        assertFalse(e1.equals(e2));
+        e1.setArea(new Rectangle2D.Double(1.0,2.0, 3.0, 4.0));
+        e1.equals(e2);
+   
+        try {
+            ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+            ObjectOutput out = new ObjectOutputStream(buffer);
+            out.writeObject(c1);
+            out.close();
+
+            ObjectInput in = new ObjectInputStream(new ByteArrayInputStream(
+                    buffer.toByteArray()));
+            c2 = (StandardEntityCollection) in.readObject();
+            in.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        assertEquals(c1, c2);
+    }
 }

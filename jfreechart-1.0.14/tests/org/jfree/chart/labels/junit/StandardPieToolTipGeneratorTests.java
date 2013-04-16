@@ -55,12 +55,17 @@ import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.jfree.chart.labels.StandardPieToolTipGenerator;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.xy.DefaultOHLCDataset;
+import org.jfree.data.xy.OHLCDataItem;
 import org.jfree.util.PublicCloneable;
 
 /**
@@ -192,5 +197,20 @@ public class StandardPieToolTipGeneratorTests extends TestCase {
         assertEquals(g1, g2);
 
     }
+    
+    
+    //also cover constructors
+    public void testGenerateToolTip(){
+    	 StandardPieToolTipGenerator g1 = new StandardPieToolTipGenerator(Locale.getDefault());
+
+       	 DefaultPieDataset d1 = new DefaultPieDataset();
+       	 d1.insertValue(0, "Key 1", 20);
+
+    	 assertEquals("Key 1: (20, 100%)", g1.generateToolTip(d1, d1.getKey(0)));
+    	
+    }
+    
+    
+    
 
 }

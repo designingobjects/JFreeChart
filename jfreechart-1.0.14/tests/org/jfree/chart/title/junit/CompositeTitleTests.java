@@ -43,6 +43,8 @@ package org.jfree.chart.title.junit;
 
 import java.awt.Color;
 import java.awt.GradientPaint;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInput;
@@ -56,9 +58,11 @@ import junit.framework.TestSuite;
 
 import org.jfree.chart.block.BlockBorder;
 import org.jfree.chart.block.BlockContainer;
+import org.jfree.chart.block.RectangleConstraint;
 import org.jfree.chart.title.CompositeTitle;
 import org.jfree.chart.title.TextTitle;
 import org.jfree.ui.RectangleInsets;
+import org.jfree.ui.Size2D;
 
 /**
  * Tests for the {@link CompositeTitle} class.
@@ -193,4 +197,16 @@ public class CompositeTitleTests extends TestCase {
         assertEquals(t1, t2);
     }
 
+    
+    public void testArrange(){
+    	
+    	BufferedImage image = new BufferedImage(200 , 100,
+                BufferedImage.TYPE_INT_RGB);
+        Graphics2D g2 = image.createGraphics();
+    	CompositeTitle t1 = new CompositeTitle(new BlockContainer());
+    	assertEquals(new Size2D(2,5), t1.arrange(g2, new RectangleConstraint(2,5)));
+    	
+    	
+    	
+    }
 }

@@ -127,6 +127,74 @@ public class AxisSpaceTests extends TestCase {
         assertTrue(s1.getClass() == s2.getClass());
         assertTrue(s1.equals(s2));
     }
+    
+  //getTop,Bottom,Right,Left + add + ensureatleast x 2 + to string
+    public void testEnsureAtLeast(){
+    	AxisSpace a1 = new AxisSpace();
+    	
+    	a1.setTop(6.11);
+    	a1.setBottom(6.11);
+    	a1.setLeft(6.11);
+    	a1.setRight(6.11);
+
+    	assertEquals(a1.getTop(),6.11);
+    	assertEquals(a1.getBottom(),6.11);
+    	assertEquals(a1.getRight(),6.11);
+    	assertEquals(a1.getLeft(),6.11);  	
+    	
+    	a1.ensureAtLeast(5.0, RectangleEdge.BOTTOM);
+    	a1.ensureAtLeast(10.0, RectangleEdge.TOP);
+    	a1.ensureAtLeast(10.0, RectangleEdge.LEFT);
+    	a1.ensureAtLeast(10.0, RectangleEdge.RIGHT);
+    	
+    	assertEquals(a1.getTop(),10.00);
+    	assertEquals(a1.getBottom(),6.11);
+    	assertEquals(a1.getRight(),10.0);
+    	assertEquals(a1.getLeft(),10.0);
+    	    	
+    	AxisSpace a2 = new AxisSpace();
+    	a2.add(15.0, RectangleEdge.TOP);
+    	a2.ensureAtLeast(a1);
+    	
+    	assertEquals(a2.getTop(),15.00);
+    	assertEquals(a2.getBottom(),6.11);
+    	assertEquals(a2.getRight(),10.0);
+    	assertEquals(a2.getLeft(),10.0);
+    }
+    
+    
+    public void testToString(){
+    	AxisSpace a1 = new AxisSpace();
+    	AxisSpace a3 = new AxisSpace();
+    	
+    	assertEquals(a1.toString(),a3.toString());	
+    }
+    
+    public void testAdd(){
+    	
+    	AxisSpace a1 = new AxisSpace();
+    	
+    	a1.setTop(1.11);
+    	a1.setBottom(1.11);
+    	a1.setLeft(1.11);
+    	a1.setRight(1.11);
+
+    	assertEquals(a1.getTop(),1.11);
+    	assertEquals(a1.getBottom(),1.11);
+    	assertEquals(a1.getRight(),1.11);
+    	assertEquals(a1.getLeft(),1.11);
+    	
+    	a1.add(5.0, RectangleEdge.BOTTOM);
+    	a1.add(5.0, RectangleEdge.TOP);
+    	a1.add(5.0, RectangleEdge.LEFT);
+    	a1.add(5.0, RectangleEdge.RIGHT);
+    	
+    	assertEquals(a1.getTop(),6.11);
+    	assertEquals(a1.getBottom(),6.11);
+    	assertEquals(a1.getRight(),6.11);
+    	assertEquals(a1.getLeft(),6.11);
+    	
+    }
 
 }
 

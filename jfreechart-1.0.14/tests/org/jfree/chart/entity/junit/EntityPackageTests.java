@@ -42,6 +42,8 @@
 
 package org.jfree.chart.entity.junit;
 
+import org.jfree.chart.entity.XYAnnotationEntity;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -68,6 +70,7 @@ public class EntityPackageTests extends TestCase {
         suite.addTestSuite(StandardEntityCollectionTests.class);
         suite.addTestSuite(TickLabelEntityTests.class);
         suite.addTestSuite(XYItemEntityTests.class);
+        suite.addTestSuite(XYAnnotationEntityTests.class);
         return suite;
     }
 

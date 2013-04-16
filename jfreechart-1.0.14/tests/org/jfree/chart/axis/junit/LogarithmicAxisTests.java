@@ -54,6 +54,7 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.jfree.chart.axis.LogarithmicAxis;
+import org.jfree.data.Range;
 import org.jfree.ui.RectangleEdge;
 
 /**
@@ -289,5 +290,17 @@ public class LogarithmicAxisTests extends TestCase {
     public static void main(String[] args) {
         junit.textui.TestRunner.run(LogarithmicAxisTests.class);
     }
+    
+    
+    //ZoomRange
+	public void testZoomRange(){
+		 LogarithmicAxis a1 = new LogarithmicAxis("Test Axis");
+		 Range r1 = new Range(0.0,1.0);
+		 assertEquals(r1,a1.getRange());
+		 Range r2 = new Range(0.0,0.0);
+		 a1.zoomRange(0.0,0.0);
+		 assertEquals(r2,a1.getRange());
+		 
+	}
 
 }

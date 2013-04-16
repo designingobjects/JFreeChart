@@ -241,4 +241,35 @@ public class CategoryTableXYDatasetTests extends TestCase {
         assertEquals(3.25, d1.getEndXValue(0, 0), EPSILON);
         assertEquals(7.25, d1.getEndXValue(0, 1), EPSILON);
     }
+    
+    public void testRemove(){
+    	
+    	 CategoryTableXYDataset d1 = new CategoryTableXYDataset();
+         d1.add(1.0, 1.1, "Series 1");
+         d1.add(2.0, 2.2, "Series 1");
+         CategoryTableXYDataset d2 = new CategoryTableXYDataset();
+         d2.add(2.0, 2.2, "Series 1");
+         CategoryTableXYDataset d3 = new CategoryTableXYDataset();
+         d1.remove(1.0, "Series 1");
+         
+         assertEquals(d1, d2);       
+         d1.clear();
+         d2.clear();        
+         assertEquals(d1,d3); 	
+    }
+    
+    public void testClear(){
+    	
+    	CategoryTableXYDataset d1 = new CategoryTableXYDataset();
+    	CategoryTableXYDataset d2 = new CategoryTableXYDataset();
+    	d1.add(1.0, 1.1, "Series 1");
+    	d1.add(2.0, 2.2, "Series 1");
+    	assertFalse(d1.equals(d2));
+    	
+    	d1.clear();
+    	assertEquals(d1,d2);
+    	
+    	
+    }
+    
 }

@@ -159,5 +159,69 @@ public class MatrixSeriesCollectionTests extends TestCase {
         }
         assertEquals(c1, c2);
     }
+    
+    public void testRemoveAllSeries(){
+    	
+        MatrixSeries s1 = new MatrixSeries("Series", 2, 3);
+        s1.update(0, 0, 1.1);
+        MatrixSeries s2 = new MatrixSeries("Series2", 1, 4);
+        
+        
+        MatrixSeriesCollection c1 = new MatrixSeriesCollection();
+        c1.addSeries(s1);
+        MatrixSeriesCollection c2 = new MatrixSeriesCollection();
+        
+        assertEquals(0.0, c1.getXValue(0, 0));
+        assertEquals(0, c1.getX(0, 0));
+        
+        assertFalse(c1.equals(c2));
+        c1.removeAllSeries();
+        assertEquals(c1, c2);
+        
+        
+        c1.addSeries(s1);
+        c1.addSeries(s2);
+        c2.addSeries(s1);
+        
+        assertFalse(c1.equals(c2));
+        
+        c1.removeSeries(s2);
+        
+        assertEquals(c1, c2);
+        c1.addSeries(s2);
+        assertFalse(c1.equals(c2));
+        c1.removeSeries(1);
+        assertEquals(c1.getSeries(0), c2.getSeries(0));
+        	
+ 
+    }
+    
+    public void testRemoveSeries(){
+    	
+    	MatrixSeries s1 = new MatrixSeries("Series", 2, 3);
+        s1.update(0, 0, 1.1);
+        MatrixSeries s2 = new MatrixSeries("Series2", 1, 4);
+        
+        
+        MatrixSeriesCollection c1 = new MatrixSeriesCollection();
+        MatrixSeriesCollection c2 = new MatrixSeriesCollection();
+    	
+    	c1.addSeries(s1);
+        c1.addSeries(s2);
+        c2.addSeries(s1);
+        
+        assertFalse(c1.equals(c2));
+        
+        c1.removeSeries(s2);
+        
+        assertEquals(c1, c2);
+        c1.addSeries(s2);
+        assertFalse(c1.equals(c2));
+        c1.removeSeries(1);
+        assertEquals(c1.getSeries(0), c2.getSeries(0));
+    	
+    	
+    	
+    }
 
 }

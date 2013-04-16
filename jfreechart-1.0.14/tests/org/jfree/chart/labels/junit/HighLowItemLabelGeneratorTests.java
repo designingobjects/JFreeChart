@@ -41,21 +41,31 @@
 
 package org.jfree.chart.labels.junit;
 
+import org.jfree.data.xy.DefaultOHLCDataset;
+import org.jfree.data.xy.DefaultTableXYDataset;
+import org.jfree.data.xy.IntervalXYDataset;
+import org.jfree.data.xy.OHLCDataItem;
+import org.jfree.data.xy.XYDataset;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.jfree.chart.labels.HighLowItemLabelGenerator;
+import org.jfree.data.xy.IntervalXYDataset;
+import org.jfree.data.xy.XYDataset;
 import org.jfree.util.PublicCloneable;
 
 /**
@@ -163,7 +173,39 @@ public class HighLowItemLabelGeneratorTests extends TestCase {
             e.printStackTrace();
         }
         assertEquals(g1, g2);
+        
+        
+        
 
+    }
+    
+    
+    //also added a test to actually run the equals method
+    public void testgenerateToolTip(){
+    	
+    	HighLowItemLabelGenerator g1 = new HighLowItemLabelGenerator();
+        HighLowItemLabelGenerator g2 = new HighLowItemLabelGenerator();	
+        int series = 5;
+		int item = 1;
+		DefaultTableXYDataset dataset = new DefaultTableXYDataset();
+		assertEquals(null,g1.generateToolTip(dataset , series , item ));
+		
+		
+        OHLCDataItem item1 = new OHLCDataItem(new Date(1L), 1.0, 2.0, 3.0, 4.0,
+                5.0);
+        OHLCDataItem item2 = new OHLCDataItem(new Date(2L), 6.0, 7.0, 8.0, 9.0,
+                10.0);
+        
+        // create an array of items in reverse order
+        OHLCDataItem[] items = new OHLCDataItem[] {item2, item1};
+        DefaultOHLCDataset d1 = new DefaultOHLCDataset("Series 1", items);
+        
+        Number x = d1.getX(series, item);
+        Date date = new Date(x.longValue());
+        assertEquals("Series 1--> Date=" + DateFormat.getInstance().format(x) + " High=2 Low=3 Open=1 Close=4", g1.generateToolTip(d1 , series , item));
+        
+  
+    	
     }
 
 }

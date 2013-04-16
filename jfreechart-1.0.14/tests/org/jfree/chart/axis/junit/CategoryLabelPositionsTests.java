@@ -54,8 +54,11 @@ import junit.framework.TestSuite;
 
 import org.jfree.chart.axis.CategoryLabelPosition;
 import org.jfree.chart.axis.CategoryLabelPositions;
+import org.jfree.chart.axis.CategoryLabelWidthType;
 import org.jfree.text.TextBlockAnchor;
 import org.jfree.ui.RectangleAnchor;
+import org.jfree.ui.RectangleEdge;
+import org.jfree.ui.TextAnchor;
 
 /**
  * Tests for the {@link CategoryLabelPositions} class.
@@ -215,5 +218,50 @@ public class CategoryLabelPositionsTests extends TestCase {
         }
         assertEquals(p1, p2);
     }
-
+    
+    //Constructor + replace rRight + Left + Bottom + Top
+    public void testReplace(){
+    	CategoryLabelPositions a1 = new CategoryLabelPositions();
+    	assertEquals(a1.getLabelPosition(RectangleEdge.TOP),new CategoryLabelPosition());
+    	assertEquals(a1.getLabelPosition(RectangleEdge.BOTTOM),new CategoryLabelPosition());
+    	assertEquals(a1.getLabelPosition(RectangleEdge.LEFT),new CategoryLabelPosition());
+    	assertEquals(a1.getLabelPosition(RectangleEdge.RIGHT),new CategoryLabelPosition());
+    
+    	CategoryLabelPosition p1 = new CategoryLabelPosition(
+                 RectangleAnchor.BOTTOM_LEFT, TextBlockAnchor.CENTER_RIGHT,
+                 TextAnchor.BASELINE_LEFT, Math.PI / 4.0,
+                 CategoryLabelWidthType.RANGE, 0.44f);
+    	 
+    	CategoryLabelPosition p2 = new CategoryLabelPosition(
+                RectangleAnchor.BOTTOM_LEFT, TextBlockAnchor.CENTER_RIGHT,
+                TextAnchor.BASELINE_LEFT, Math.PI / 4.0,
+                CategoryLabelWidthType.RANGE, 0.44f);
+    	
+    	CategoryLabelPosition p3 = new CategoryLabelPosition(
+                RectangleAnchor.BOTTOM_LEFT, TextBlockAnchor.CENTER_RIGHT,
+                TextAnchor.BASELINE_LEFT, Math.PI / 4.0,
+                CategoryLabelWidthType.RANGE, 0.44f);
+    	
+    	CategoryLabelPosition p4 = new CategoryLabelPosition(
+                RectangleAnchor.BOTTOM_LEFT, TextBlockAnchor.CENTER_RIGHT,
+                TextAnchor.BASELINE_LEFT, Math.PI / 4.0,
+                CategoryLabelWidthType.RANGE, 0.44f);
+    	
+    	CategoryLabelPositions t1 = a1.replaceLeftPosition(a1, p1) ;
+    	assertEquals(t1.getLabelPosition(RectangleEdge.LEFT),p1);
+    	
+    	CategoryLabelPositions t2 = a1.replaceRightPosition(a1, p2) ;
+    	assertEquals(t2.getLabelPosition(RectangleEdge.RIGHT),p2);
+    	
+    	CategoryLabelPositions t3 = a1.replaceBottomPosition(a1, p3) ;
+    	assertEquals(t3.getLabelPosition(RectangleEdge.BOTTOM),p3);
+    	
+    	CategoryLabelPositions t4 = a1.replaceTopPosition(a1, p4) ;
+    	assertEquals(t4.getLabelPosition(RectangleEdge.TOP),p4);
+    	
+    	
+    }
+    
+    
+    
 }

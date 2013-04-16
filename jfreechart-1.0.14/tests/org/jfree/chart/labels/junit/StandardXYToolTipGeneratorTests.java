@@ -49,14 +49,19 @@ import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.MessageFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import org.jfree.chart.labels.MultipleXYSeriesLabelGenerator;
 import org.jfree.chart.labels.StandardXYToolTipGenerator;
+import org.jfree.data.xy.DefaultOHLCDataset;
+import org.jfree.data.xy.OHLCDataItem;
 import org.jfree.util.PublicCloneable;
 
 /**
@@ -202,5 +207,39 @@ public class StandardXYToolTipGeneratorTests extends TestCase {
         assertEquals(g1, g2);
 
     }
+    
+    public void testEquals2(){
+    	
+    	StandardXYToolTipGenerator g1 = new StandardXYToolTipGenerator("{0}: ({1}, {2})", NumberFormat.getNumberInstance(),
+                NumberFormat.getNumberInstance());
+    	MultipleXYSeriesLabelGenerator g2 = new MultipleXYSeriesLabelGenerator(); 
+    	
+    	assertTrue(g1.equals(g1));
+    	assertFalse(g1.equals(g2));
+  
+    
+    }
+    
+    public void testConstructers() {
+    	StandardXYToolTipGenerator g1 = new StandardXYToolTipGenerator("{0}: ({1}, {2})", DateFormat.getDateInstance(),
+                NumberFormat.getNumberInstance() );
+    	StandardXYToolTipGenerator g2 = new StandardXYToolTipGenerator("{0}: ({1}, {2})", 
+                NumberFormat.getNumberInstance(), DateFormat.getDateInstance() );
+    	
+	}
+    
+    public void testgenerateToolTip(){
+    	
+    	StandardXYToolTipGenerator g1 = new StandardXYToolTipGenerator("{0}: ({1}, {2})", DateFormat.getDateInstance(),
+                NumberFormat.getNumberInstance() );
+    	
+    	OHLCDataItem item1 = new OHLCDataItem(new Date(1L), 1.0, 2.0, 3.0, 4.0,5.0);
+        OHLCDataItem[] items = new OHLCDataItem[] {item1};
+        DefaultOHLCDataset d1 = new DefaultOHLCDataset("Series 1", items);
+        double x = d1.getXValue(0, 0);
+    	assertEquals("Series 1: (" +DateFormat.getDateInstance().format(new Date((long) x))+", 4)",g1.generateToolTip(d1, 0, 0));
+    	
+    }
+    
 
 }

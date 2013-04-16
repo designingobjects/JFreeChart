@@ -53,35 +53,39 @@ import junit.framework.TestSuite;
  */
 public class UtilPackageTests extends TestCase {
 
-    /**
-     * Returns a test suite to the JUnit test runner.
-     *
-     * @return The test suite.
-     */
-    public static Test suite() {
-        TestSuite suite = new TestSuite("org.jfree.chart.util");
-        suite.addTestSuite(LineUtilitiesTests.class);
-        suite.addTestSuite(LogFormatTests.class);
-        suite.addTestSuite(RelativeDateFormatTests.class);
-        return suite;
-    }
+	/**
+	 * Returns a test suite to the JUnit test runner.
+	 * 
+	 * @return The test suite.
+	 */
+	public static Test suite() {
+		TestSuite suite = new TestSuite("org.jfree.chart.util");
+		suite.addTestSuite(HexNumberFormatTests.class);
+		suite.addTestSuite(LineUtilitiesTests.class);
+		suite.addTestSuite(LogFormatTests.class);
+		suite.addTestSuite(ParamChecksTests.class);
+		suite.addTestSuite(RelativeDateFormatTests.class);
+		return suite;
+	}
 
-    /**
-     * Constructs the test suite.
-     *
-     * @param name  the suite name.
-     */
-    public UtilPackageTests(String name) {
-        super(name);
-    }
+	/**
+	 * Constructs the test suite.
+	 * 
+	 * @param name
+	 *            the suite name.
+	 */
+	public UtilPackageTests(String name) {
+		super(name);
+	}
 
-    /**
-     * Runs the test suite using JUnit's text-based runner.
-     *
-     * @param args  ignored.
-     */
-    public static void main(String[] args) {
-        junit.textui.TestRunner.run(suite());
-    }
+	/**
+	 * Runs the test suite using JUnit's text-based runner.
+	 * 
+	 * @param args
+	 *            ignored.
+	 */
+	public static void main(String[] args) {
+		junit.textui.TestRunner.run(suite());
+	}
 
 }

@@ -180,5 +180,14 @@ public class CompassPlotTests extends TestCase {
         assertTrue(p1.getClass() == p2.getClass());
         assertTrue(p1.equals(p2));
     }
+    
+    
+	public void testAddDataset(){
+    	CompassPlot p1 = new CompassPlot(new DefaultValueDataset());
+    	assertEquals(p1.getDatasets().length, 1);
+    	p1.addDataset(new DefaultValueDataset());
+    	assertEquals(p1.getDatasets().length, 2);
+	
+    }
 
 }
