@@ -44,7 +44,10 @@
 package org.jfree.chart.annotations.junit;
 
 import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInput;
@@ -124,14 +127,16 @@ public class XYDataImageAnnotationTests extends TestCase {
    
     //Matt's Tests
     public void testConstructors() {
-    	XYDataImageAnnotation a = new XYDataImageAnnotation(null, 1, 1, 1, 1);
-    	XYDataImageAnnotation b = new XYDataImageAnnotation(null, 1, 1, 1, 1, false);
+    	BufferedImage image = new BufferedImage(10, 10, 10);
+    	XYDataImageAnnotation a = new XYDataImageAnnotation(image, 1, 1, 1, 1);
+    	XYDataImageAnnotation b = new XYDataImageAnnotation(image, 1, 1, 1, 1, false);
     	assertEquals(a, b);
     	
     }
     
     public void testEquals() {
-    	XYDataImageAnnotation a = new XYDataImageAnnotation(null, 1, 1, 1, 1);
+    	BufferedImage image = new BufferedImage(10, 10, 10);
+    	XYDataImageAnnotation a = new XYDataImageAnnotation(image, 0, 0, 0, 0);
     	assertTrue(a.equals(a));
     	
     	assertFalse(a.equals(null));
