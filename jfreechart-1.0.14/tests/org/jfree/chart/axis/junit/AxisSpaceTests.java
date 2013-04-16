@@ -46,7 +46,6 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.jfree.chart.axis.AxisSpace;
-import org.jfree.ui.RectangleEdge;
 
 /**
  * Tests for the {@link AxisSpace} class.
@@ -129,8 +128,7 @@ public class AxisSpaceTests extends TestCase {
         assertTrue(s1.equals(s2));
     }
     
-    
-    //getTop,Bottom,Right,Left + add + ensureatleast x 2 + to string
+  //getTop,Bottom,Right,Left + add + ensureatleast x 2 + to string
     public void testEnsureAtLeast(){
     	AxisSpace a1 = new AxisSpace();
     	
@@ -197,8 +195,6 @@ public class AxisSpaceTests extends TestCase {
     	assertEquals(a1.getLeft(),6.11);
     	
     }
-    
-    
 
 }
 
