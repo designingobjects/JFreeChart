@@ -55,8 +55,6 @@ import org.jfree.chart.event.ChartChangeEvent;
 import org.jfree.chart.event.ChartChangeListener;
 import org.jfree.chart.plot.MultiplePiePlot;
 import org.jfree.chart.plot.PiePlot;
-import org.jfree.chart.plot.PiePlot3D;
-import org.jfree.chart.plot.RingPlot;
 import org.jfree.chart.title.TextTitle;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
@@ -104,7 +102,7 @@ public class PieChartTests extends TestCase {
 		JFreeChart pie = createPieChart_WithoutURL();
 		ChartTheme theme = StandardChartTheme.createDarknessTheme();
 		theme.apply(pie);
-		
+
 		assertEquals("Pie Chart", pie.getTitle().getText());
 		assertNotNull(pie.getLegend());
 		assertNotNull(((PiePlot) pie.getPlot()).getToolTipGenerator());
@@ -114,7 +112,7 @@ public class PieChartTests extends TestCase {
 		JFreeChart pie = createPieChart_WithoutURLMinimalOptions();
 		ChartTheme theme = StandardChartTheme.createDarknessTheme();
 		theme.apply(pie);
-		
+
 		assertEquals("Pie Chart", pie.getTitle().getText());
 		assertNull(pie.getLegend());
 		assertNull(((PiePlot) pie.getPlot()).getToolTipGenerator());
@@ -124,7 +122,7 @@ public class PieChartTests extends TestCase {
 		JFreeChart pie = createPieChart_MinimalOptions();
 		ChartTheme theme = StandardChartTheme.createDarknessTheme();
 		theme.apply(pie);
-		
+
 		assertEquals("Pie Chart", pie.getTitle().getText());
 		assertNull(pie.getLegend());
 		assertNull(((PiePlot) pie.getPlot()).getToolTipGenerator());
@@ -135,7 +133,7 @@ public class PieChartTests extends TestCase {
 		JFreeChart pie = createPieChart_EnabledURL();
 		ChartTheme theme = StandardChartTheme.createDarknessTheme();
 		theme.apply(pie);
-		
+
 		assertEquals("Pie Chart", pie.getTitle().getText());
 		assertNotNull(((PiePlot) pie.getPlot()).getURLGenerator());
 	}
@@ -144,7 +142,7 @@ public class PieChartTests extends TestCase {
 		JFreeChart pie = createPieChart_TwoDataSets();
 		ChartTheme theme = StandardChartTheme.createDarknessTheme();
 		theme.apply(pie);
-		
+
 		assertEquals("Pie Chart Two Data Sets", pie.getTitle().getText());
 		assertEquals("Bright red=change >=-10%, Bright green=change >=+10%",
 				((TextTitle) pie.getSubtitles().get(1)).getText());
@@ -157,7 +155,7 @@ public class PieChartTests extends TestCase {
 		JFreeChart pie = createPieChart_TwoDataSetsMinimalOptions();
 		ChartTheme theme = StandardChartTheme.createDarknessTheme();
 		theme.apply(pie);
-		
+
 		assertEquals("Pie Chart Minimal Options", pie.getTitle().getText());
 		assertNull(pie.getBackgroundImage());
 		assertNull(pie.getLegend());
@@ -168,7 +166,7 @@ public class PieChartTests extends TestCase {
 		JFreeChart pie = createPieChart_TwoDataSetsSubtitleWithoutGreenIncrease();
 		ChartTheme theme = StandardChartTheme.createDarknessTheme();
 		theme.apply(pie);
-		
+
 		assertEquals("Pie Chart Subtitle Without Green Increase", pie
 				.getTitle().getText());
 		assertEquals("Bright green=change >=-101%, Bright red=change >=+101%",
@@ -193,7 +191,7 @@ public class PieChartTests extends TestCase {
 		JFreeChart pie = createPieChart_TwoDataSetsWithURLMinimalOptions();
 		ChartTheme theme = StandardChartTheme.createDarknessTheme();
 		theme.apply(pie);
-		
+
 		assertEquals("Pie Chart Minimal Options", pie.getTitle().getText());
 		assertNull(pie.getBackgroundImage());
 		assertNull(pie.getLegend());
@@ -205,110 +203,18 @@ public class PieChartTests extends TestCase {
 		JFreeChart pie = createPieChart_TwoDataSetsWithURLSubtitleWithoutGreenIncrease();
 		ChartTheme theme = StandardChartTheme.createDarknessTheme();
 		theme.apply(pie);
-		
+
 		assertEquals("Pie Chart Subtitle Without Green Increase", pie
 				.getTitle().getText());
 		assertEquals("Bright green=change >=-101%, Bright red=change >=+101%",
 				((TextTitle) pie.getSubtitles().get(0)).getText());
 	}
 
-	public void testCreateRingChart_WithoutURL() {
-		JFreeChart ring = createRingChart_WithoutURL();
-		ChartTheme theme = StandardChartTheme.createDarknessTheme();
-		theme.apply(ring);
-		
-		assertEquals("Ring Chart", ring.getTitle().getText());
-		assertNotNull(ring.getLegend());
-		assertTrue(ring.getPlot() instanceof RingPlot);
-		assertNotNull(((RingPlot) ring.getPlot()).getToolTipGenerator());
-	}
-
-	public void testCreateRingChart_WithoutURLMinimalOptions() {
-		JFreeChart ring = createRingChart_WithoutURLMinimalOptions();
-		ChartTheme theme = StandardChartTheme.createDarknessTheme();
-		theme.apply(ring);
-		
-		assertEquals("Ring Chart", ring.getTitle().getText());
-		assertNull(ring.getLegend());
-		assertTrue(ring.getPlot() instanceof RingPlot);
-		assertNull(((RingPlot) ring.getPlot()).getToolTipGenerator());
-	}
-
-	public void testCreateRingChart_EnabledURL() {
-		JFreeChart ring = createRingChart_EnabledURL();
-		ChartTheme theme = StandardChartTheme.createDarknessTheme();
-		theme.apply(ring);
-		
-		assertEquals("Ring Chart", ring.getTitle().getText());
-		assertNotNull(ring.getLegend());
-		assertTrue(ring.getPlot() instanceof RingPlot);
-		assertNotNull(((RingPlot) ring.getPlot()).getToolTipGenerator());
-		assertNotNull(((RingPlot) ring.getPlot()).getURLGenerator());
-	}
-
-	public void testCreateRingChart_EnabledURLMinimalOptions() {
-		JFreeChart ring = createRingChart_EnabledURLMinimalOptions();
-		ChartTheme theme = StandardChartTheme.createDarknessTheme();
-		theme.apply(ring);
-		
-		assertEquals("Ring Chart", ring.getTitle().getText());
-		assertNull(ring.getLegend());
-		assertTrue(ring.getPlot() instanceof RingPlot);
-		assertNull(((RingPlot) ring.getPlot()).getToolTipGenerator());
-		assertNull(((RingPlot) ring.getPlot()).getURLGenerator());
-	}
-
-	public void testCreatePieChart3D_WithoutURL() {
-		JFreeChart pie = createPieChart3D_WithoutURL();
-		ChartTheme theme = StandardChartTheme.createDarknessTheme();
-		theme.apply(pie);
-		
-		assertEquals("Pie Chart 3D", pie.getTitle().getText());
-		assertNotNull(pie.getLegend());
-		assertTrue(pie.getPlot() instanceof PiePlot3D);
-		assertNotNull(((PiePlot3D) pie.getPlot()).getToolTipGenerator());
-	}
-
-	public void testCreatePieChart3D_WithoutURLMinimalOptions() {
-		JFreeChart pie = createPieChart3D_WithoutURLMinimalOptions();
-		ChartTheme theme = StandardChartTheme.createDarknessTheme();
-		theme.apply(pie);
-		
-		assertEquals("Pie Chart 3D", pie.getTitle().getText());
-		assertNull(pie.getLegend());
-		assertTrue(pie.getPlot() instanceof PiePlot3D);
-		assertNull(((PiePlot3D) pie.getPlot()).getToolTipGenerator());
-	}
-
-	public void testCreatePieChart3D_EnabledURL() {
-		JFreeChart pie = createPieChart3D_EnabledURL();
-		ChartTheme theme = StandardChartTheme.createDarknessTheme();
-		theme.apply(pie);
-		
-		assertEquals("Pie Chart 3D", pie.getTitle().getText());
-		assertNotNull(pie.getLegend());
-		assertTrue(pie.getPlot() instanceof PiePlot3D);
-		assertNotNull(((PiePlot3D) pie.getPlot()).getToolTipGenerator());
-		assertNotNull(((PiePlot3D) pie.getPlot()).getURLGenerator());
-	}
-
-	public void testCreatePieChart3D_EnabledURLMinimalOptions() {
-		JFreeChart pie = createPieChart3D_EnabledURLMinimalOptions();
-		ChartTheme theme = StandardChartTheme.createDarknessTheme();
-		theme.apply(pie);
-		
-		assertEquals("Pie Chart 3D", pie.getTitle().getText());
-		assertNull(pie.getLegend());
-		assertTrue(pie.getPlot() instanceof PiePlot3D);
-		assertNull(((PiePlot3D) pie.getPlot()).getToolTipGenerator());
-		assertNull(((PiePlot3D) pie.getPlot()).getURLGenerator());
-	}
-
 	public void testCreateMultiplePieChart_EnabledURLByRow() {
 		JFreeChart pie = createMultiplePieChart_EnabledURLByRow();
 		ChartTheme theme = StandardChartTheme.createDarknessTheme();
 		theme.apply(pie);
-		
+
 		assertEquals("Multiple Pie Chart", pie.getTitle().getText());
 		assertNotNull(pie.getLegend());
 		assertTrue(pie.getPlot() instanceof MultiplePiePlot);
@@ -323,7 +229,7 @@ public class PieChartTests extends TestCase {
 		JFreeChart pie = createMultiplePieChart_EnabledURLByCol();
 		ChartTheme theme = StandardChartTheme.createDarknessTheme();
 		theme.apply(pie);
-		
+
 		assertEquals("Multiple Pie Chart", pie.getTitle().getText());
 		assertNotNull(pie.getLegend());
 		assertTrue(pie.getPlot() instanceof MultiplePiePlot);
@@ -338,7 +244,7 @@ public class PieChartTests extends TestCase {
 		JFreeChart pie = createMultiplePieChart_EnabledURLMinimalOptions();
 		ChartTheme theme = StandardChartTheme.createDarknessTheme();
 		theme.apply(pie);
-		
+
 		assertEquals("Multiple Pie Chart", pie.getTitle().getText());
 		assertNull(pie.getLegend());
 		assertTrue(pie.getPlot() instanceof MultiplePiePlot);
@@ -355,65 +261,6 @@ public class PieChartTests extends TestCase {
 		try {
 			ChartFactory.createMultiplePieChart("Multiple Pie Chart", dataSet,
 					null, false, false, false);
-			fail();
-		} catch (IllegalArgumentException e) {
-		}
-	}
-
-	public void testCreateMultiplePieChart3D_EnabledURLByRow() {
-		JFreeChart pie = createMultiplePieChart3D_EnabledURLByRow();
-		ChartTheme theme = StandardChartTheme.createDarknessTheme();
-		theme.apply(pie);
-		
-		assertEquals("Multiple Pie Chart 3D", pie.getTitle().getText());
-		assertNotNull(pie.getLegend());
-		assertTrue(pie.getPlot() instanceof MultiplePiePlot);
-		MultiplePiePlot mpp = (MultiplePiePlot) pie.getPlot();
-		assertEquals(TableOrder.BY_ROW, mpp.getDataExtractOrder());
-		assertTrue(mpp.getPieChart().getPlot() instanceof PiePlot3D);
-		PiePlot3D pp = ((PiePlot3D) mpp.getPieChart().getPlot());
-		assertNotNull(pp.getToolTipGenerator());
-		assertNotNull(pp.getURLGenerator());
-	}
-
-	public void testCreateMultiplePieChart3D_EnabledURLByCol() {
-		JFreeChart pie = createMultiplePieChart3D_EnabledURLByCol();
-		ChartTheme theme = StandardChartTheme.createDarknessTheme();
-		theme.apply(pie);
-		
-		assertEquals("Multiple Pie Chart 3D", pie.getTitle().getText());
-		assertNotNull(pie.getLegend());
-		assertTrue(pie.getPlot() instanceof MultiplePiePlot);
-		MultiplePiePlot mpp = (MultiplePiePlot) pie.getPlot();
-		assertEquals(TableOrder.BY_COLUMN, mpp.getDataExtractOrder());
-		assertTrue(mpp.getPieChart().getPlot() instanceof PiePlot3D);
-		PiePlot3D pp = ((PiePlot3D) mpp.getPieChart().getPlot());
-		assertNotNull(pp.getToolTipGenerator());
-		assertNotNull(pp.getURLGenerator());
-	}
-
-	public void testCreateMultiplePieChart3D_EnabledURLMinimalOptions() {
-		JFreeChart pie = createMultiplePieChart3D_EnabledURLMinimalOptions();
-		ChartTheme theme = StandardChartTheme.createDarknessTheme();
-		theme.apply(pie);
-		
-		assertEquals("Multiple Pie Chart 3D", pie.getTitle().getText());
-		assertNull(pie.getLegend());
-		assertTrue(pie.getPlot() instanceof MultiplePiePlot);
-		assertTrue(((MultiplePiePlot) pie.getPlot()).getPieChart().getPlot() instanceof PiePlot3D);
-		PiePlot pp = ((PiePlot) ((MultiplePiePlot) pie.getPlot()).getPieChart()
-				.getPlot());
-		assertNull(pp.getToolTipGenerator());
-		assertNull(pp.getURLGenerator());
-	}
-
-	public void testCreateMultiplePieChart3D_NullTableOrder() {
-		DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
-		dataSet.addValue(11, "row1", "col2");
-
-		try {
-			ChartFactory.createMultiplePieChart3D("Multiple Pie Chart 3D",
-					dataSet, null, false, false, false);
 			fail();
 		} catch (IllegalArgumentException e) {
 		}
@@ -659,102 +506,6 @@ public class PieChartTests extends TestCase {
 				);
 	}
 
-	private static JFreeChart createRingChart_WithoutURL() {
-		// create a dataset...
-		DefaultPieDataset data = new DefaultPieDataset();
-		data.setValue("Java", new Double(43.2));
-
-		// create the chart...
-		return ChartFactory.createRingChart("Ring Chart", // chart title
-				data, // data
-				true, // include legend
-				true, new Locale("en"));
-	}
-
-	private static JFreeChart createRingChart_WithoutURLMinimalOptions() {
-		// create a dataset...
-		DefaultPieDataset data = new DefaultPieDataset();
-		data.setValue("Java", new Double(43.2));
-
-		// create the chart...
-		return ChartFactory.createRingChart("Ring Chart", // chart title
-				data, // data
-				false, // include legend
-				false, new Locale("en"));
-	}
-
-	private static JFreeChart createRingChart_EnabledURL() {
-		// create a dataset...
-		DefaultPieDataset data = new DefaultPieDataset();
-		data.setValue("Java", new Double(43.2));
-
-		// create the chart...
-		return ChartFactory.createRingChart("Ring Chart", // chart title
-				data, // data
-				true, // include legend
-				true, true);
-	}
-
-	private static JFreeChart createRingChart_EnabledURLMinimalOptions() {
-		// create a dataset...
-		DefaultPieDataset data = new DefaultPieDataset();
-		data.setValue("Java", new Double(43.2));
-
-		// create the chart...
-		return ChartFactory.createRingChart("Ring Chart", // chart title
-				data, // data
-				false, // include legend
-				false, false);
-	}
-
-	private static JFreeChart createPieChart3D_WithoutURL() {
-		// create a dataset...
-		DefaultPieDataset data = new DefaultPieDataset();
-		data.setValue("Java", new Double(43.2));
-
-		// create the chart...
-		return ChartFactory.createPieChart3D("Pie Chart 3D", // chart title
-				data, // data
-				true, // include legend
-				true, new Locale("en"));
-	}
-
-	private static JFreeChart createPieChart3D_WithoutURLMinimalOptions() {
-		// create a dataset...
-		DefaultPieDataset data = new DefaultPieDataset();
-		data.setValue("Java", new Double(43.2));
-
-		// create the chart...
-		return ChartFactory.createPieChart3D("Pie Chart 3D", // chart title
-				data, // data
-				false, // include legend
-				false, new Locale("en"));
-	}
-
-	private static JFreeChart createPieChart3D_EnabledURL() {
-		// create a dataset...
-		DefaultPieDataset data = new DefaultPieDataset();
-		data.setValue("Java", new Double(43.2));
-
-		// create the chart...
-		return ChartFactory.createPieChart3D("Pie Chart 3D", // chart title
-				data, // data
-				true, // include legend
-				true, true);
-	}
-
-	private static JFreeChart createPieChart3D_EnabledURLMinimalOptions() {
-		// create a dataset...
-		DefaultPieDataset data = new DefaultPieDataset();
-		data.setValue("Java", new Double(43.2));
-
-		// create the chart...
-		return ChartFactory.createPieChart3D("Pie Chart 3D", // chart title
-				data, // data
-				false, // include legend
-				false, false);
-	}
-
 	private static JFreeChart createMultiplePieChart_EnabledURLByRow() {
 		// create a dataset...
 		DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
@@ -794,50 +545,6 @@ public class PieChartTests extends TestCase {
 		// create the chart...
 		return ChartFactory.createMultiplePieChart("Multiple Pie Chart", // chart
 																			// title
-				dataSet, // data
-				TableOrder.BY_ROW, false, // include legend
-				false, false);
-	}
-
-	private static JFreeChart createMultiplePieChart3D_EnabledURLByRow() {
-		// create a dataset...
-		DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
-		dataSet.addValue(11, "row1", "col2");
-		dataSet.addValue(22, "row2", "col1");
-
-		// create the chart...
-		return ChartFactory.createMultiplePieChart3D("Multiple Pie Chart 3D", // chart
-																				// title
-				dataSet, // data
-				TableOrder.BY_ROW, true, // include legend
-				true, // tooltips
-				true); // url
-	}
-
-	private static JFreeChart createMultiplePieChart3D_EnabledURLByCol() {
-		// create a dataset...
-		DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
-		dataSet.addValue(11, "row1", "col2");
-		dataSet.addValue(22, "row2", "col1");
-
-		// create the chart...
-		return ChartFactory.createMultiplePieChart3D("Multiple Pie Chart 3D", // chart
-																				// title
-				dataSet, // data
-				TableOrder.BY_COLUMN, true, // include legend
-				true, // tooltips
-				true); // url
-	}
-
-	private static JFreeChart createMultiplePieChart3D_EnabledURLMinimalOptions() {
-		// create a dataset...
-		DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
-		dataSet.addValue(11, "row1", "col2");
-		dataSet.addValue(22, "row2", "col1");
-
-		// create the chart...
-		return ChartFactory.createMultiplePieChart3D("Multiple Pie Chart 3D", // chart
-																				// title
 				dataSet, // data
 				TableOrder.BY_ROW, false, // include legend
 				false, false);

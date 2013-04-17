@@ -86,6 +86,7 @@ public class ChartPackageTests extends TestCase {
 		suite.addTestSuite(PieChartTests.class);
 		suite.addTestSuite(PieChart3DTests.class);
 		suite.addTestSuite(PolarPlotTests.class);
+		suite.addTestSuite(RingChartTests.class);
 		suite.addTestSuite(ScatterPlotTests.class);
 		suite.addTestSuite(StackedAreaChartTests.class);
 		suite.addTestSuite(StackedBarChartTests.class);
